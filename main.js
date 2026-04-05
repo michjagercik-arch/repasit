@@ -23,7 +23,7 @@ const translations = {
         feat_3_desc: "Nákupom predlžujete životnosť zariadení, znižujete elektroodpad a aktívne chránite našu prírodu.",
         
         prod_title: "Aktuálna ponuka",
-        prod_subtitle: "Exkluzívny výber najlepších zariadení pripravených na okamžité použitie.",
+        prod_subtitle: "Výber zariadení pripravených na okamžité použitie. Pre detailné informácie k produktu ma prosím kontaktujte.",
         filter_all: "Všetko",
         filter_laptops: "Notebooky",
         filter_desktops: "Stolné PC",
@@ -80,7 +80,7 @@ const translations = {
         feat_3_desc: "Nákupem prodlužujete životnost zařízení, snižujete elektroodpad a aktivně chráníte naši přírodu.",
         
         prod_title: "Aktuální nabídka",
-        prod_subtitle: "Exkluzivní výběr nejlepších zařízení připravených k okamžitému použití.",
+        prod_subtitle: "Výběr zařízení připravených k okamžitému použití. Pro detailní informace k produktu mě prosím kontaktujte.",
         filter_all: "Vše",
         filter_laptops: "Notebooky",
         filter_desktops: "Stolní PC",
@@ -137,7 +137,7 @@ const translations = {
         feat_3_desc: "By purchasing, you extend the life of devices, reduce e-waste, and actively protect our nature.",
         
         prod_title: "Current Offers",
-        prod_subtitle: "An exclusive selection of top devices ready for immediate use.",
+        prod_subtitle: "A selection of devices ready for immediate use. For detailed product information, please contact me.",
         filter_all: "All",
         filter_laptops: "Laptops",
         filter_desktops: "Desktops",
