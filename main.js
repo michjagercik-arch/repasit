@@ -279,7 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // --- Translations Logic ---
     let lastOpenedProduct = null;
-    let currentLang = localStorage.getItem('repasit-lang') || 'sk';
+    let currentLang = localStorage.getItem('repasit-lang') || 'cz';
     const langSelect = document.getElementById('langSelect');
     if (langSelect) {
         langSelect.value = currentLang;
@@ -341,9 +341,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const iconSun = document.querySelector('.icon-sun');
     
     const savedTheme = localStorage.getItem('repasit-theme');
-    const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
     
-    if (savedTheme === 'light' || (!savedTheme && prefersLight)) {
+    const currentHour = new Date().getHours();
+    const isDayTime = currentHour >= 7 && currentHour < 19;
+    const defaultTheme = isDayTime ? 'light' : 'dark';
+    
+    if (savedTheme === 'light' || (!savedTheme && defaultTheme === 'light')) {
         document.documentElement.setAttribute('data-theme', 'light');
         if(iconMoon && iconSun) {
             iconMoon.classList.remove('hidden');
