@@ -506,8 +506,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const formData = new FormData(inquiryForm);
         formData.append("access_key", "60dbcb5e-5044-49d4-9afa-a414c5df421a");
         
-        const productName = document.getElementById('modalProductName').innerText;
-        const formSubject = productName === '' ? 'Všeobecný dopyt' : `Záujem o produkt: ${productName}`;
+        const formSubject = lastOpenedProduct ? `Záujem o produkt: ${lastOpenedProduct}` : 'Všeobecný dopyt';
         formData.append("subject", formSubject);
         formData.append("from_name", "REPASit E-shop");
 
