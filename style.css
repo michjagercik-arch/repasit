@@ -821,3 +821,67 @@ h1, h2, h3, h4 {
   opacity: 0;
   animation: fadeIn 1s ease forwards;
 }
+
+/* Personal Contact Section */
+.personal-contact {
+  padding: 60px 0 100px;
+}
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 40px;
+  border-radius: var(--radius-lg);
+  align-items: center;
+}
+@media (min-width: 768px) {
+  .contact-card {
+    flex-direction: row;
+    padding: 60px;
+  }
+}
+.contact-image {
+  flex-shrink: 0;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid var(--border);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+.contact-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.contact-info {
+  flex: 1;
+}
+.contact-info h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+.contact-info p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+.contact-person {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+}
+.contact-person strong {
+  font-size: 1.2rem;
+  color: var(--brand-primary);
+}
+.contact-person span {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}

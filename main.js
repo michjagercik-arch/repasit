@@ -30,6 +30,12 @@ const translations = {
         filter_monitors: "Monitory",
         filter_accessories: "Príslušenstvo",
         
+        contact_title: "Váš osobný IT partner",
+        contact_text: "Nekupujete mačku vo vreci. Za každým jedným zariadením stojím osobne – od jeho výberu, cez testy až po dodanie. Som tu pre vás aj po nákupe, pripravený poradiť s výberom pre váš biznis či domácnosť.",
+        contact_role: "Zakladateľ QBITI & REPASit",
+        contact_mail: "Napísať e-mail",
+        contact_call: "Zavolať mi",
+        
         footer_desc: "Prémiová repasovaná technika pre tých, ktorí hľadajú kvalitu za rozumnú cenu.",
         footer_contact: "Kontakt",
         footer_links: "Rýchle odkazy",
@@ -81,6 +87,12 @@ const translations = {
         filter_monitors: "Monitory",
         filter_accessories: "Příslušenství",
         
+        contact_title: "Váš osobní IT partner",
+        contact_text: "Nekupujete zajíce v pytli. Za každým jedním zařízením stojím osobně – od jeho výběru, přes testy až po dodání. Jsem tu pro vás i po nákupu, připraven poradit s výběrem pro váš byznys či domácnost.",
+        contact_role: "Zakladatel QBITI & REPASit",
+        contact_mail: "Napsat e-mail",
+        contact_call: "Zavolat mi",
+        
         footer_desc: "Prémiová repasovaná technika pro ty, kteří hledají kvalitu za rozumnou cenu.",
         footer_contact: "Kontakt",
         footer_links: "Rychlé odkazy",
@@ -131,6 +143,12 @@ const translations = {
         filter_desktops: "Desktops",
         filter_monitors: "Monitors",
         filter_accessories: "Accessories",
+        
+        contact_title: "Your Personal IT Partner",
+        contact_text: "You aren't buying a pig in a poke. I personally stand behind every single device – from selection and testing to delivery. I am here for you even after the purchase, ready to advise on the best choice for your business or home.",
+        contact_role: "Founder of QBITI & REPASit",
+        contact_mail: "Send E-mail",
+        contact_call: "Call Me",
         
         footer_desc: "Premium refurbished equipment for those seeking quality at a reasonable price.",
         footer_contact: "Contact",
@@ -220,6 +238,9 @@ async function fetchProductsFromGoogleSheets() {
             if (type === 'desktop') {
                 query += ' desktop pc';
                 if (titleLower.includes('aio') || titleLower.includes('all-in-one')) query += ' all in one';
+                if (titleLower.includes('lynx')) {
+                    query = 'premium rgb gaming pc tower case professional studio shot';
+                }
             } else if (type === 'monitor') {
                 query += ' monitor display front';
             } else if (type === 'accessory') {
