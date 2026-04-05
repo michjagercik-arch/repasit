@@ -48,7 +48,7 @@ const translations = {
         modal_success: "Ďakujeme! Váš dopyt bol úspešne odoslaný. Čoskoro vás budeme kontaktovať.",
         
         product_btn: "Mám záujem",
-        product_grade: "Trieda B",
+        product_grade: "Trieda A/B",
         product_stock: "Skladom: {count} ks"
     },
     cz: {
@@ -99,7 +99,7 @@ const translations = {
         modal_success: "Děkujeme! Vaše poptávka byla úspěšně odeslána. Brzy vás budeme kontaktovat.",
         
         product_btn: "Mám zájem",
-        product_grade: "Třída B",
+        product_grade: "Třída A/B",
         product_stock: "Skladem: {count} ks"
     },
     en: {
@@ -471,14 +471,43 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target === modalOverlay) closeContactModal();
     });
 
-    inquiryForm.addEventListener('submit', (e) => {
+    inquiryForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        inquiryForm.style.display = 'none';
-        formSuccess.classList.remove('hidden');
         
-        setTimeout(() => {
-            closeContactModal();
-        }, 3000);
+        const submitBtn = inquiryForm.querySelector('.btn-primary');
+        const originalText = submitBtn.innerText;
+        submitBtn.innerText = 'Odosielam...';
+        submitBtn.disabled = true;
+        
+        const formData = new FormData(inquiryForm);
+        formData.append("access_key", "60dbcb5e-5044-49d4-9afa-a414c5df421a");
+        
+        const productName = document.getElementById('modalProductName').innerText;
+        const formSubject = productName === '' ? 'Všeobecný dopyt' : `Záujem o produkt: ${productName}`;
+        formData.append("subject", formSubject);
+        formData.append("from_name", "REPASit E-shop");
+
+        try {
+            const response = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                body: formData
+            });
+            
+            const data = await response.json();
+            
+            if (data.success) {
+                inquiryForm.style.display = 'none';
+                formSuccess.classList.remove('hidden');
+                setTimeout(() => closeContactModal(), 3000);
+            } else {
+                alert("Nastala chyba pri odosielaní. Skúste to prosím neskôr.");
+            }
+        } catch (error) {
+            alert("Skontrolujte svoje internetové pripojenie.");
+        } finally {
+            submitBtn.innerText = originalText;
+            submitBtn.disabled = false;
+        }
     });
     
     // Navbar Generic Contact Button
