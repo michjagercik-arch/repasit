@@ -3,14 +3,14 @@ const translations = {
     sk: {
         head_title: "REPASit | Prémiová technika",
         nav_home: "Domov",
-        nav_why: "Prečo my",
+        nav_why: "Prečo repas",
         nav_products: "Produkty",
         nav_contact: "Kontakt",
         
-        hero_badge: "Nová dimenzia IT vybavenia",
+        hero_badge: "Dimenzia IT vybavenia",
         hero_title_1: "Prémiová repasovaná",
         hero_title_2: "IT technika.",
-        hero_subtitle: "Vysoký výkon a spoľahlivosť bez kompromisov. Starostlivo vybrané a testované zariadenia pre vašu firmu aj domov.",
+        hero_subtitle: "Spoľahlivosť bez kompromisov. Starostlivo vybrané a testované zariadenia pre vašu firmu aj domov.",
         hero_btn_1: "Pozrieť ponuku",
         hero_btn_2: "Zistiť viac",
         
@@ -54,14 +54,14 @@ const translations = {
     cz: {
         head_title: "REPASit | Prémiová technika",
         nav_home: "Domů",
-        nav_why: "Proč my",
+        nav_why: "Proč repas",
         nav_products: "Produkty",
         nav_contact: "Kontakt",
         
-        hero_badge: "Nová dimenze IT vybavení",
+        hero_badge: "Dimenze IT vybavení",
         hero_title_1: "Prémiová repasovaná",
         hero_title_2: "IT technika.",
-        hero_subtitle: "Vysoký výkon a spolehlivost bez kompromisů. Pečlivě vybraná a testovaná zařízení pro vaši firmu i domov.",
+        hero_subtitle: "Spolehlivost bez kompromisů. Pečlivě vybraná a testovaná zařízení pro vaši firmu i domov.",
         hero_btn_1: "Prohlédnout nabídku",
         hero_btn_2: "Zjistit více",
         
@@ -105,14 +105,14 @@ const translations = {
     en: {
         head_title: "REPASit | Premium Equipment",
         nav_home: "Home",
-        nav_why: "Why Us",
+        nav_why: "Why Refurbished",
         nav_products: "Products",
         nav_contact: "Contact",
         
-        hero_badge: "A New Dimension of IT Equipment",
+        hero_badge: "Dimension of IT equipment",
         hero_title_1: "Premium Refurbished",
         hero_title_2: "IT Equipment.",
-        hero_subtitle: "High performance and reliability without compromises. Carefully selected and tested devices for your business and home.",
+        hero_subtitle: "Reliability without compromises. Carefully selected and tested devices for your business and home.",
         hero_btn_1: "View Catalog",
         hero_btn_2: "Learn More",
         
@@ -197,7 +197,8 @@ async function fetchProductsFromGoogleSheets() {
             if (seen.has(cleanName)) return;
             seen.add(cleanName);
             
-            let stockRaw = tokens[2] ? tokens[2].trim() : '';
+            let configRaw = tokens[2] ? tokens[2].trim().replace(/^"|"$/g, '') : '';
+            let stockRaw = tokens[3] ? tokens[3].trim() : '';
             let stock = parseInt(stockRaw) || 1;
             
             let type = 'laptop';
@@ -207,24 +208,7 @@ async function fetchProductsFromGoogleSheets() {
             if (category === 'DOCK') type = 'accessory';
             
             let title = cleanName;
-            let specs = '';
-            
-            if (cleanName.includes(' - ')) {
-                let parts = cleanName.split(' - ');
-                let potentialSpecs = parts[parts.length - 1].trim();
-                // Check if it's the spec string part
-                if (potentialSpecs.includes('/') || potentialSpecs.includes('GB') || potentialSpecs.includes('RAM') || potentialSpecs.match(/[0-9]/)) {
-                    specs = potentialSpecs.substring(0, 45);
-                    title = parts.slice(0, -1).join(' - ');
-                }
-            } else {
-                let specMatch = cleanName.match(/(i3|i5|i7|i9|Ryzen).*/);
-                if (specMatch) {
-                    specs = specMatch[0].trim().substring(0, 45);
-                    title = cleanName.substring(0, specMatch.index).trim();
-                }
-            }
-            if (!specs) specs = 'Špecifikácie na vyžiadanie';
+            let specs = category;
             
             title = title.replace(/,$/, '').replace(/"/g, '').trim();
             if (title.length > 50) title = title.substring(0, 50) + '...';
@@ -245,31 +229,10 @@ async function fetchProductsFromGoogleSheets() {
             }
             
             // Dynamic image assignment using the Bing proxy hack as built earlier
-            image = `https://tse2.mm.bing.net/th?q=${encodeURIComponent(query)}&w=600&h=400&c=7`;
+            image = `https://tse2.mm.bing.net/th?q=${encodeURIComponent(query)}&w=600`;
             
-            let descSK = '', descCZ = '', descEN = '';
-            if (type === 'laptop') {
-                descSK = 'Výkonný vylepšený notebook pre prácu aj domov. Garantovaná funkčnosť a skvelý stav za bezkonkurenčnú cenu.';
-                descCZ = 'Výkonný vylepšený notebook pro práci i domov. Garantovaná funkčnost a skvělý stav za bezkonkurenční cenu.';
-                descEN = 'Powerful refurbished laptop for work and home. Guaranteed functionality and great condition at an unbeatable price.';
-            } else if (type === 'desktop') {
-                descSK = 'Spoľahlivý počítač pre plynulý chod aplikácií. Ideálny základ na kancelárske systémy či do moderného pracoviska.';
-                descCZ = 'Spolehlivý počítač pro plynulý chod aplikací. Ideální základ na kancelářské systémy či do moderního pracoviště.';
-                descEN = 'Reliable desktop computer for smooth application performance. Ideal base for office systems or modern workplaces.';
-                if (titleLower.includes('gaming')) {
-                    descSK = 'Neúprosný herný výkon s prvotriednymi komponentami pre to najjemnejšie rozlíšenie.';
-                    descCZ = 'Neúprosný herní výkon s prvotřídními komponenty pro to nejjemnější rozlišení.';
-                    descEN = 'Relentless gaming performance with premium components for the highest resolution.';
-                }
-            } else if (type === 'monitor') {
-                descSK = 'Ostrý a jasný obraz so zárukou zobrazenia verných farieb. Pre radosť z práce bez bolestí očí.';
-                descCZ = 'Ostrý a jasný obraz se zárukou zobrazení věrných barev. Pro radost z práce bez bolestí očí.';
-                descEN = 'Sharp and bright image with guaranteed true color reproduction. For comfortable work without eye strain.';
-            } else if (type === 'accessory') {
-                descSK = 'Originálne profesionálne príslušenstvo pre maximálnu konektivitu a ergonómiu tvojho pracoviska.';
-                descCZ = 'Originální profesionální příslušenství pro maximální konektivitu a ergonomii tvého pracoviště.';
-                descEN = 'Original professional accessory for maximum connectivity and ergonomics of your workspace.';
-            }
+            let finalDesc = configRaw || 'Presné špecifikácie na vyžiadanie.';
+            let descSK = finalDesc, descCZ = finalDesc, descEN = finalDesc;
 
             products.push({
                 id: idCount++,
