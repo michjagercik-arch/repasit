@@ -467,12 +467,50 @@ h1, h2, h3, h4 {
 /* =========================================================================
    PRODUCTS SECTION
    ========================================================================= */
-.products-filters {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin-bottom: 40px;
-    flex-wrap: wrap;
+.products-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+.filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.search-sort {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.search-input, .sort-select {
+  padding: 10px 16px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  border-radius: var(--radius-full);
+  outline: none;
+  font-family: inherit;
+  font-size: 0.9rem;
+  transition: border-color var(--transition-fast);
+}
+.search-input { width: 220px; }
+.search-input:focus, .sort-select:focus {
+  border-color: var(--brand-primary);
+}
+
+@media (max-width: 768px) {
+  .products-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .search-sort {
+    flex-direction: column;
+  }
+  .search-input { width: 100%; }
 }
 
 .filter-btn {
@@ -835,6 +873,34 @@ h1, h2, h3, h4 {
   opacity: 1;
   transform: translateY(0) translateZ(0);
 }
+
+/* Skeleton Loaders */
+.skeleton-card {
+  pointer-events: none;
+  background: var(--bg-secondary);
+}
+.skeleton-img, .skeleton-text {
+  background: var(--bg-primary); /* Less intrusive on load */
+  border-radius: var(--radius-sm);
+  animation: pulse 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .5; }
+}
+.skeleton-img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0; left: 0;
+}
+.skeleton-text {
+  height: 14px;
+  margin-bottom: 12px;
+}
+.skeleton-text.short { width: 40%; height: 24px; margin-bottom: 8px;}
+.skeleton-text.medium { width: 80%; height: 16px;}
+.skeleton-text.full { width: 100%; }
 
 /* Mesh Gradient Focus Fixes */
 .hero-content {

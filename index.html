@@ -106,22 +106,33 @@
           <p class="section-subtitle" data-i18n="prod_subtitle">Exkluzívny výber najlepších zariadení pripravených na okamžité použitie.</p>
         </div>
         
-        <!-- Filters could be added here -->
-        <div class="products-filters" id="filters">
+        <div class="products-controls">
+          <div class="filters">
             <button class="filter-btn active" data-filter="all" data-i18n="filter_all">Všetko</button>
-            <button class="filter-btn" data-filter="laptop" data-i18n="filter_laptops">Notebooky</button>
-            <button class="filter-btn" data-filter="desktop" data-i18n="filter_desktops">Stolné PC</button>
-            <button class="filter-btn" data-filter="monitor" data-i18n="filter_monitors">Monitory</button>
+            <button class="filter-btn" data-filter="notebook" data-i18n="filter_laptops">Notebooky</button>
+            <button class="filter-btn" data-filter="desktop" data-i18n="filter_desktops">Počítače</button>
             <button class="filter-btn" data-filter="accessory" data-i18n="filter_accessories">Príslušenstvo</button>
             <button class="filter-btn" data-filter="gaming" data-i18n="filter_gaming">Herné PC</button>
+          </div>
+          <div class="search-sort">
+            <input type="text" id="productSearch" class="search-input" placeholder="Hľadať produkt..." data-i18n-ph="search_placeholder">
+            <select id="productSort" class="sort-select">
+              <option value="default" data-i18n="sort_default">Základné</option>
+              <option value="az" data-i18n="sort_az">Názov: Od A po Z</option>
+              <option value="za" data-i18n="sort_za">Názov: Od Z po A</option>
+            </select>
+          </div>
         </div>
 
         <div class="products-grid" id="productsGrid">
+          <article class="product-card skeleton-card"><div class="skeleton-img"></div><div class="product-content"><div class="skeleton-text short"></div><div class="skeleton-text medium"></div><div class="skeleton-text full"></div></div></article>
+          <article class="product-card skeleton-card"><div class="skeleton-img"></div><div class="product-content"><div class="skeleton-text short"></div><div class="skeleton-text medium"></div><div class="skeleton-text full"></div></div></article>
+          <article class="product-card skeleton-card"><div class="skeleton-img"></div><div class="product-content"><div class="skeleton-text short"></div><div class="skeleton-text medium"></div><div class="skeleton-text full"></div></div></article>
+          <article class="product-card skeleton-card"><div class="skeleton-img"></div><div class="product-content"><div class="skeleton-text short"></div><div class="skeleton-text medium"></div><div class="skeleton-text full"></div></div></article>
           <!-- Products will be injected via JS -->
         </div>
       </div>
     </section>
-
 
 
     <!-- Footer -->

@@ -37,6 +37,11 @@ const translations = {
         contact_mail: "Napísať e-mail",
         contact_call: "Zavolať mi",
         
+        search_placeholder: "Hľadať produkt...",
+        sort_default: "Základné triedenie",
+        sort_az: "Názov: Od A po Z",
+        sort_za: "Názov: Od Z po A",
+        
         footer_desc: "Prémiová repasovaná technika pre tých, ktorí hľadajú kvalitu za rozumnú cenu.",
         footer_contact: "Kontakt",
         footer_links: "Rýchle odkazy",
@@ -95,6 +100,11 @@ const translations = {
         contact_mail: "Napsat e-mail",
         contact_call: "Zavolat mi",
         
+        search_placeholder: "Hledat produkt...",
+        sort_default: "Základní",
+        sort_az: "Přirozeně: Od A po Z",
+        sort_za: "Přirozeně: Od Z po A",
+        
         footer_desc: "Prémiová repasovaná technika pro ty, kteří hledají kvalitu za rozumnou cenu.",
         footer_contact: "Kontakt",
         footer_links: "Rychlé odkazy",
@@ -152,6 +162,11 @@ const translations = {
         contact_role: "Founder of QBITI & REPASit",
         contact_mail: "Send E-mail",
         contact_call: "Call Me",
+        
+        search_placeholder: "Search product...",
+        sort_default: "Default Sort",
+        sort_az: "A to Z Alphabetical",
+        sort_za: "Z to A Alphabetical",
         
         footer_desc: "Premium refurbished equipment for those seeking quality at a reasonable price.",
         footer_contact: "Contact",
@@ -405,14 +420,37 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Render Products ---
     const productsGrid = document.getElementById('productsGrid');
     
-    function renderProducts(filterType = 'all') {
+    let currentFilterType = 'all';
+    let searchQuery = '';
+    let sortType = 'default';
+    
+    function renderProducts(filterType = currentFilterType) {
+        currentFilterType = filterType;
         productsGrid.innerHTML = '';
         
-        const filteredProducts = filterType === 'all' 
+        let filteredProducts = filterType === 'all' 
             ? rawProducts 
             : rawProducts.filter(p => p.type === filterType);
             
+        // String Sub-search mapping attributes
+        if (searchQuery) {
+            const q = searchQuery.toLowerCase();
+            filteredProducts = filteredProducts.filter(p => p.title.toLowerCase().includes(q) || (p.specs && p.specs.toLowerCase().includes(q)));
+        }
+        
+        // Sorting
+        if (sortType === 'az') {
+            filteredProducts = [...filteredProducts].sort((a,b) => a.title.localeCompare(b.title));
+        } else if (sortType === 'za') {
+            filteredProducts = [...filteredProducts].sort((a,b) => b.title.localeCompare(a.title));
+        }
+        
         const dict = translations[currentLang];
+        
+        if (filteredProducts.length === 0) {
+            productsGrid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--text-secondary); width: 100%;">Neboli nájdené žiadne výsledky pre hľadaný výraz.</p>`;
+            return;
+        }
         
         filteredProducts.forEach((product, idx) => {
             const card = document.createElement('article');
@@ -458,25 +496,40 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 50);
     }
 
-    // Initialize translations and fetch live products
-    productsGrid.innerHTML = '<div style="text-align:center; padding: 40px; grid-column: 1/-1; color: var(--text-secondary);">Načítavam produkty z Google tabuľky...</div>';
+    // Initialize HTML Static Translations
+    setLanguage(currentLang);
     
+    // Fetch live data array replacing skeletons
     fetchProductsFromGoogleSheets().then(() => {
-        applyTranslations();
-        renderProducts(document.querySelector('.filter-btn.active').getAttribute('data-filter'));
+        applyTranslations(); // To ensure API string constants overwrite natively
+        renderProducts(currentFilterType);
     });
 
-    // --- Filter functionality ---
+    // --- Filter & Search functionality ---
     const filterBtns = document.querySelectorAll('.filter-btn');
     filterBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
             filterBtns.forEach(b => b.classList.remove('active'));
             e.target.classList.add('active');
-            
-            const filterValue = e.target.getAttribute('data-filter');
-            renderProducts(filterValue);
+            renderProducts(e.target.getAttribute('data-filter'));
         });
     });
+    
+    const searchInput = document.getElementById('productSearch');
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            searchQuery = e.target.value;
+            renderProducts();
+        });
+    }
+    
+    const sortSelect = document.getElementById('productSort');
+    if (sortSelect) {
+        sortSelect.addEventListener('change', (e) => {
+            sortType = e.target.value;
+            renderProducts();
+        });
+    }
 
     // --- Modal functionality ---
     const modalOverlay = document.getElementById('contactModal');
