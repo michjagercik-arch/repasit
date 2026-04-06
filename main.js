@@ -258,7 +258,7 @@ async function fetchProductsFromGoogleSheets() {
             }
             
             // Dynamic image assignment using the Bing proxy hack as built earlier
-            image = `https://tse2.mm.bing.net/th?q=${encodeURIComponent(query)}&w=600`;
+            let image = `https://tse2.mm.bing.net/th?q=${encodeURIComponent(query)}&w=600`;
             
             let finalDesc = configRaw || 'Presné špecifikácie na vyžiadanie.';
             let descSK = finalDesc, descCZ = finalDesc, descEN = finalDesc;
