@@ -29,6 +29,7 @@ const translations = {
         filter_desktops: "Stolné PC",
         filter_monitors: "Monitory",
         filter_accessories: "Príslušenstvo",
+        filter_gaming: "Herné PC",
         
         contact_title: "Váš osobný IT partner",
         contact_text: "Nekupujete mačku vo vreci. Za každým jedným zariadením stojím osobne – od jeho výberu, cez testy až po dodanie. Som tu pre vás aj po nákupe, pripravený poradiť s výberom pre váš biznis či domácnosť.",
@@ -86,6 +87,7 @@ const translations = {
         filter_desktops: "Stolní PC",
         filter_monitors: "Monitory",
         filter_accessories: "Příslušenství",
+        filter_gaming: "Herní PC",
         
         contact_title: "Váš osobní IT partner",
         contact_text: "Nekupujete zajíce v pytli. Za každým jedním zařízením stojím osobně – od jeho výběru, přes testy až po dodání. Jsem tu pro vás i po nákupu, připraven poradit s výběrem pro váš byznys či domácnost.",
@@ -143,6 +145,7 @@ const translations = {
         filter_desktops: "Desktops",
         filter_monitors: "Monitors",
         filter_accessories: "Accessories",
+        filter_gaming: "Gaming PCs",
         
         contact_title: "Your Personal IT Partner",
         contact_text: "You aren't buying a pig in a poke. I personally stand behind every single device – from selection and testing to delivery. I am here for you even after the purchase, ready to advise on the best choice for your business or home.",
@@ -219,26 +222,31 @@ async function fetchProductsFromGoogleSheets() {
             let stockRaw = tokens[3] ? tokens[3].trim() : '';
             let stock = parseInt(stockRaw) || 1;
             
-            let type = 'laptop';
-            if (category.includes('AiO') || category.includes('PC Mini') || category.includes('PC SFF') || category.includes('Thin Client')) type = 'desktop';
-            if (category.includes('PC gaming')) type = 'desktop';
-            if (category.includes('LCD')) type = 'monitor';
-            if (category === 'DOCK') type = 'accessory';
-            
             let title = cleanName;
             let specs = category;
             
             title = title.replace(/,$/, '').replace(/"/g, '').trim();
             if (title.length > 50) title = title.substring(0, 50) + '...';
             
-            let image = 'https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&q=80&w=800'; 
-            
             const titleLower = title.toLowerCase();
+
+            let type = 'laptop';
+            if (category.includes('AiO') || category.includes('PC Mini') || category.includes('PC SFF') || category.includes('Thin Client')) type = 'desktop';
+            if (category.includes('PC gaming')) type = 'desktop';
+            if (category.includes('LCD')) type = 'monitor';
+            if (category === 'DOCK') type = 'accessory';
+            
+            if (category.toLowerCase().includes('gaming') || titleLower.includes('gaming') || titleLower.includes('gamer') || titleLower.includes('lynx')) {
+                type = 'gaming';
+            }
+            
             let query = title;
             if (type === 'desktop') {
                 query += ' desktop pc';
                 if (titleLower.includes('aio') || titleLower.includes('all-in-one')) query += ' all in one';
-                if (titleLower.includes('lynx')) {
+            } else if (type === 'gaming') {
+                query = 'premium rgb gaming setup laptop professional studio shot';
+                if (titleLower.includes('lynx') || titleLower.includes('desktop') || titleLower.includes('pc') || category.toLowerCase().includes('pc')) {
                     query = 'premium rgb gaming pc tower case professional studio shot';
                 }
             } else if (type === 'monitor') {
