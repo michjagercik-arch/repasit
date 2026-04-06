@@ -37,6 +37,8 @@ const translations = {
         contact_mail: "Napísať e-mail",
         contact_call: "Zavolať mi",
         
+        marquee_text: "★ 100% GARANCIA KVALITY ★ PREVERENÝ REPAS ★ EKO-LOGICKÁ VOĽBA ★ PROFESIONÁLNE IT ★ OKAMŽITÉ DODANIE ★ ",
+        
         footer_desc: "Prémiová repasovaná technika pre tých, ktorí hľadajú kvalitu za rozumnú cenu.",
         footer_contact: "Kontakt",
         footer_links: "Rýchle odkazy",
@@ -95,6 +97,8 @@ const translations = {
         contact_mail: "Napsat e-mail",
         contact_call: "Zavolat mi",
         
+        marquee_text: "★ 100% GARANCE KVALITY ★ PROVĚŘENÝ REPAS ★ EKO-LOGICKÁ VOLBA ★ PROFESIONÁLNÍ IT ★ OKAMŽITÉ DODÁNÍ ★ ",
+        
         footer_desc: "Prémiová repasovaná technika pro ty, kteří hledají kvalitu za rozumnou cenu.",
         footer_contact: "Kontakt",
         footer_links: "Rychlé odkazy",
@@ -152,6 +156,8 @@ const translations = {
         contact_role: "Founder of QBITI & REPASit",
         contact_mail: "Send E-mail",
         contact_call: "Call Me",
+        
+        marquee_text: "★ 100% QUALITY GUARANTEE ★ VERIFIED REFURBISHED ★ ECO-LOGICAL CHOICE ★ PROFESSIONAL IT ★ IMMEDIATE DELIVERY ★ ",
         
         footer_desc: "Premium refurbished equipment for those seeking quality at a reasonable price.",
         footer_contact: "Contact",
@@ -447,6 +453,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 openContactModal(productName);
             });
         });
+        
+        setTimeout(() => {
+            if(window.applyTilt) window.applyTilt(document.querySelectorAll('.product-card'));
+            if(window.attachCursorEvents) window.attachCursorEvents(document.querySelectorAll('.product-card'));
+        }, 100);
     }
 
     // Initialize translations and fetch live products
@@ -550,4 +561,86 @@ document.addEventListener('DOMContentLoaded', () => {
         openContactModal(null);
     });
 
+    // --- Premium Enhancements ---
+    
+    // 1. Custom Cursor
+    // Only initialized if it exists and pointer is fine
+    if (window.matchMedia('(pointer: fine)').matches) {
+        const cursor = document.getElementById('custom-cursor');
+        const follower = document.getElementById('custom-cursor-follower');
+        if (cursor && follower) {
+            let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
+            let followerX = window.innerWidth / 2, followerY = window.innerHeight / 2;
+
+            document.addEventListener('mousemove', e => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                cursor.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+            });
+
+            function animateFollower() {
+                followerX += (mouseX - followerX) * 0.15;
+                followerY += (mouseY - followerY) * 0.15;
+                follower.style.transform = `translate(${followerX}px, ${followerY}px) translate(-50%, -50%)`;
+                requestAnimationFrame(animateFollower);
+            }
+            animateFollower();
+            
+            window.attachCursorEvents = (elements) => {
+                elements.forEach(el => {
+                    if(!el.dataset.cursorAttached) {
+                        el.addEventListener('mouseenter', () => {
+                            cursor.classList.add('hover');
+                            follower.classList.add('hover');
+                        });
+                        el.addEventListener('mouseleave', () => {
+                            cursor.classList.remove('hover');
+                            follower.classList.remove('hover');
+                        });
+                        el.dataset.cursorAttached = true;
+                    }
+                });
+            };
+            setTimeout(() => {
+                window.attachCursorEvents(document.querySelectorAll('a, button, .product-card'));
+            }, 500);
+        }
+    }
+
+    // 2. Parallax Hero
+    const heroContent = document.querySelector('.hero-content');
+    window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+        if (heroContent && scrollY < window.innerHeight) {
+            heroContent.style.transform = `translateY(${scrollY * 0.3}px)`;
+            heroContent.style.opacity = 1 - scrollY / 600;
+        }
+    });
+
+    // 3. 3D Tilt function
+    window.applyTilt = function(elements) {
+        // Disabled on mobile for smoothness
+        if(!window.matchMedia('(pointer: fine)').matches) return;
+        elements.forEach(card => {
+            if(card.dataset.tiltAttached) return;
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const angleX = (y - centerY) / 20; 
+                const angleY = (centerX - x) / 20;
+                card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) scale3d(1.02, 1.02, 1.02)`;
+                card.style.zIndex = "10";
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+                card.style.zIndex = "1";
+            });
+            card.dataset.tiltAttached = true;
+        });
+    };
+
 });
+
