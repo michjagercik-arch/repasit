@@ -450,7 +450,6 @@ document.addEventListener('DOMContentLoaded', () => {
         
         setTimeout(() => {
             if(window.applyTilt) window.applyTilt(document.querySelectorAll('.product-card'));
-            if(window.attachCursorEvents) window.attachCursorEvents(document.querySelectorAll('.product-card'));
         }, 100);
     }
 
@@ -554,61 +553,6 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         openContactModal(null);
     });
-
-    // --- Premium Enhancements ---
-    
-    // 1. Custom Cursor - Restored with Fixes
-    if (window.matchMedia('(pointer: fine)').matches) {
-        const cursor = document.getElementById('custom-cursor');
-        const follower = document.getElementById('custom-cursor-follower');
-        if (cursor && follower) {
-            let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
-            let followerX = window.innerWidth / 2, followerY = window.innerHeight / 2;
-
-            document.addEventListener('mousemove', e => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-                cursor.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
-            });
-            
-            document.addEventListener('mouseover', e => {
-                if (e.target.closest('button') || e.target.closest('.btn')) {
-                    cursor.style.opacity = '0';
-                    follower.style.opacity = '0';
-                } else {
-                    cursor.style.opacity = '1';
-                    follower.style.opacity = '1';
-                }
-            });
-
-            function animateFollower() {
-                followerX += (mouseX - followerX) * 0.15;
-                followerY += (mouseY - followerY) * 0.15;
-                follower.style.transform = `translate(${followerX}px, ${followerY}px) translate(-50%, -50%)`;
-                requestAnimationFrame(animateFollower);
-            }
-            animateFollower();
-            
-            window.attachCursorEvents = (elements) => {
-                elements.forEach(el => {
-                    if(!el.dataset.cursorAttached) {
-                        el.addEventListener('mouseenter', () => {
-                            cursor.classList.add('hover');
-                            follower.classList.add('hover');
-                        });
-                        el.addEventListener('mouseleave', () => {
-                            cursor.classList.remove('hover');
-                            follower.classList.remove('hover');
-                        });
-                        el.dataset.cursorAttached = true;
-                    }
-                });
-            };
-            setTimeout(() => {
-                window.attachCursorEvents(document.querySelectorAll('a, button, .product-card'));
-            }, 500);
-        }
-    }
 
     // --- Premium Enhancements ---
 
