@@ -875,17 +875,17 @@ h1, h2, h3, h4 {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle at 50% 50%, rgba(67, 97, 238, 0.4) 0%, transparent 60%),
-              radial-gradient(circle at 80% 20%, rgba(114, 9, 183, 0.3) 0%, transparent 50%),
-              radial-gradient(circle at 20% 80%, rgba(76, 201, 240, 0.3) 0%, transparent 60%);
+  background: radial-gradient(circle at 50% 50%, rgba(76, 201, 240, 0.5) 0%, transparent 40%),
+              radial-gradient(circle at 80% 20%, rgba(247, 37, 133, 0.5) 0%, transparent 35%),
+              radial-gradient(circle at 20% 80%, rgba(67, 97, 238, 0.5) 0%, transparent 45%);
   animation: mesh 8s infinite alternate ease-in-out;
   z-index: 0;
   pointer-events: none;
 }
 [data-theme="light"] .mesh-bg {
-  background: radial-gradient(circle at 50% 50%, rgba(67, 97, 238, 0.25) 0%, transparent 60%),
-              radial-gradient(circle at 80% 20%, rgba(114, 9, 183, 0.2) 0%, transparent 50%),
-              radial-gradient(circle at 20% 80%, rgba(76, 201, 240, 0.2) 0%, transparent 60%);
+  background: radial-gradient(circle at 50% 50%, rgba(76, 201, 240, 0.4) 0%, transparent 40%),
+              radial-gradient(circle at 80% 20%, rgba(247, 37, 133, 0.4) 0%, transparent 35%),
+              radial-gradient(circle at 20% 80%, rgba(67, 97, 238, 0.4) 0%, transparent 45%);
 }
 @keyframes mesh {
   0% { transform: translate(0, 0) scale(1) rotate(0deg); }
