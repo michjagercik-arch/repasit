@@ -520,7 +520,7 @@ h1, h2, h3, h4 {
 
 .product-card:hover {
   border-color: var(--border-hover);
-  /* transform given over to JavaScript VanillaTilt logic */
+  transform: translateY(-8px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 

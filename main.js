@@ -448,9 +448,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
         
-        setTimeout(() => {
-            if(window.applyTilt) window.applyTilt(document.querySelectorAll('.product-card'));
-        }, 100);
     }
 
     // Initialize translations and fetch live products
@@ -565,31 +562,6 @@ document.addEventListener('DOMContentLoaded', () => {
             heroContent.style.opacity = 1 - scrollY / 600;
         }
     });
-
-    // 3. 3D Tilt function
-    window.applyTilt = function(elements) {
-        // Disabled on mobile for smoothness
-        if(!window.matchMedia('(pointer: fine)').matches) return;
-        elements.forEach(card => {
-            if(card.dataset.tiltAttached) return;
-            card.addEventListener('mousemove', e => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                const angleX = (y - centerY) / 20; 
-                const angleY = (centerX - x) / 20;
-                card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) scale3d(1.02, 1.02, 1.02)`;
-                card.style.zIndex = "10";
-            });
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-                card.style.zIndex = "1";
-            });
-            card.dataset.tiltAttached = true;
-        });
-    };
 
 });
 
