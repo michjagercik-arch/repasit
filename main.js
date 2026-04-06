@@ -245,9 +245,12 @@ async function fetchProductsFromGoogleSheets() {
                 query += ' desktop pc';
                 if (titleLower.includes('aio') || titleLower.includes('all-in-one')) query += ' all in one';
             } else if (type === 'gaming') {
-                query = 'premium rgb gaming setup laptop professional studio shot';
-                if (titleLower.includes('lynx') || titleLower.includes('desktop') || titleLower.includes('pc') || category.toLowerCase().includes('pc')) {
+                if (titleLower.includes('lynx')) {
                     query = 'premium rgb gaming pc tower case professional studio shot';
+                } else if (category.toLowerCase().includes('desktop') || category.toLowerCase().includes('pc') || titleLower.includes('desktop') || titleLower.includes('pc')) {
+                    query += ' desktop pc professional';
+                } else {
+                    query += ' laptop computer front view';
                 }
             } else if (type === 'monitor') {
                 query += ' monitor display front';
