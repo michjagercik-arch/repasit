@@ -822,4 +822,43 @@ h1, h2, h3, h4 {
   animation: fadeIn 1s ease forwards;
 }
 
+/* Premium Enhancements: High-visibility Custom Cursor */
+@media (pointer: fine) {
+  body, a, button, .product-card {
+    cursor: none !important;
+  }
+}
+#custom-cursor, #custom-cursor-follower {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+}
+#custom-cursor {
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  border-radius: 50%;
+  transition: width 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), height 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+#custom-cursor-follower {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  transition: transform 0.1s ease-out, border 0.3s, opacity 0.2s;
+}
+#custom-cursor.hover {
+  width: 50px;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 1);
+  mix-blend-mode: difference;
+}
+#custom-cursor-follower.hover {
+  opacity: 0;
+}
+
 
