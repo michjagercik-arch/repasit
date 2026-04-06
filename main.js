@@ -414,9 +414,11 @@ document.addEventListener('DOMContentLoaded', () => {
             
         const dict = translations[currentLang];
         
-        filteredProducts.forEach(product => {
-            const card = document.createElement('div');
-            card.className = 'product-card fade-in';
+        filteredProducts.forEach((product, idx) => {
+            const card = document.createElement('article');
+            card.className = 'product-card reveal-up';
+            card.style.transitionDelay = `${(idx % 4) * 0.1}s`;
+            
             const desc = product.desc[currentLang] || product.desc.sk;
             const stockText = dict['product_stock'].replace('{count}', product.stock);
             
@@ -448,6 +450,12 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
         
+        // Attach elements to observer loop after render
+        setTimeout(() => {
+            if (window.scrollObserver) {
+                document.querySelectorAll('.product-card.reveal-up').forEach(el => window.scrollObserver.observe(el));
+            }
+        }, 50);
     }
 
     // Initialize translations and fetch live products
@@ -551,17 +559,55 @@ document.addEventListener('DOMContentLoaded', () => {
         openContactModal(null);
     });
 
-    // --- Premium Enhancements ---
+    // --- Global Premium Scroll Interactions ---
 
-    // 2. Parallax Hero
+    // 1. Intersection Observer (Reveal on Scroll)
+    const observerOptions = {
+        threshold: 0.05,
+        rootMargin: "0px 0px -50px 0px"
+    };
+
+    window.scrollObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Initial hook for static HTML entries (pre-render)
+    document.querySelectorAll('.feature-card, .section-header').forEach(el => {
+        el.classList.add('reveal-up');
+        window.scrollObserver.observe(el);
+    });
+
+    // 2. Widespread RequestAnimationFrame Parallax
     const heroContent = document.querySelector('.hero-content');
+    
+    // Smooth scrolling matrix
     window.addEventListener('scroll', () => {
-        const scrollY = window.scrollY;
-        if (heroContent && scrollY < window.innerHeight) {
-            heroContent.style.transform = `translateY(${scrollY * 0.3}px)`;
-            heroContent.style.opacity = 1 - scrollY / 600;
-        }
+        requestAnimationFrame(() => {
+            const scrollY = window.scrollY;
+            const wH = window.innerHeight;
+            
+            // Hero primary descent logic
+            if (heroContent && scrollY < wH) {
+                heroContent.style.transform = `translateY(${scrollY * 0.3}px)`;
+                heroContent.style.opacity = 1 - scrollY / 600;
+            }
+
+            // Universal Elements Parallax Translation
+            // E.g. Product images shifting inside their boxes slightly
+            document.querySelectorAll('.product-image-wrap img, .feature-icon').forEach(img => {
+                const rect = img.getBoundingClientRect();
+                // Check bounds globally
+                if (rect.top < wH && rect.bottom > 0) {
+                    const offset = (rect.top - (wH / 2)) * 0.05; 
+                    img.style.transform = `translateY(${offset}px) scale(1.05)`;
+                }
+            });
+        });
     });
 
 });
-
