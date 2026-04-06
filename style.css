@@ -902,6 +902,55 @@ h1, h2, h3, h4 {
 .skeleton-text.medium { width: 80%; height: 16px;}
 .skeleton-text.full { width: 100%; }
 
+/* WhatsApp Floating Button */
+.whatsapp-float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 40px;
+  right: 40px;
+  background-color: #25d366;
+  color: #FFF;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 30px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.3s;
+  animation: floatWhatsApp 3s infinite ease-in-out;
+}
+.whatsapp-float svg {
+  width: 35px;
+  height: 35px;
+  margin-top: -1px;
+}
+.whatsapp-float:hover {
+  background-color: #128C7E;
+  transform: scale(1.15) translateY(-5px);
+  animation-play-state: paused;
+}
+@keyframes floatWhatsApp {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .whatsapp-float {
+    width: 50px;
+    height: 50px;
+    bottom: 20px;
+    right: 20px;
+  }
+  .whatsapp-float svg {
+    width: 28px;
+    height: 28px;
+  }
+}
+
 /* Mesh Gradient Focus Fixes */
 .hero-content {
   position: relative;

@@ -38,9 +38,6 @@ const translations = {
         contact_call: "Zavolať mi",
         
         search_placeholder: "Hľadať produkt...",
-        sort_default: "Základné triedenie",
-        sort_az: "Názov: Od A po Z",
-        sort_za: "Názov: Od Z po A",
         
         footer_desc: "Prémiová repasovaná technika pre tých, ktorí hľadajú kvalitu za rozumnú cenu.",
         footer_contact: "Kontakt",
@@ -101,9 +98,6 @@ const translations = {
         contact_call: "Zavolat mi",
         
         search_placeholder: "Hledat produkt...",
-        sort_default: "Základní",
-        sort_az: "Přirozeně: Od A po Z",
-        sort_za: "Přirozeně: Od Z po A",
         
         footer_desc: "Prémiová repasovaná technika pro ty, kteří hledají kvalitu za rozumnou cenu.",
         footer_contact: "Kontakt",
@@ -164,9 +158,6 @@ const translations = {
         contact_call: "Call Me",
         
         search_placeholder: "Search product...",
-        sort_default: "Default Sort",
-        sort_az: "A to Z Alphabetical",
-        sort_za: "Z to A Alphabetical",
         
         footer_desc: "Premium refurbished equipment for those seeking quality at a reasonable price.",
         footer_contact: "Contact",
@@ -422,7 +413,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     let currentFilterType = 'all';
     let searchQuery = '';
-    let sortType = 'default';
     
     function renderProducts(filterType = currentFilterType) {
         currentFilterType = filterType;
@@ -436,13 +426,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (searchQuery) {
             const q = searchQuery.toLowerCase();
             filteredProducts = filteredProducts.filter(p => p.title.toLowerCase().includes(q) || (p.specs && p.specs.toLowerCase().includes(q)));
-        }
-        
-        // Sorting
-        if (sortType === 'az') {
-            filteredProducts = [...filteredProducts].sort((a,b) => a.title.localeCompare(b.title));
-        } else if (sortType === 'za') {
-            filteredProducts = [...filteredProducts].sort((a,b) => b.title.localeCompare(a.title));
         }
         
         const dict = translations[currentLang];
@@ -519,14 +502,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
             searchQuery = e.target.value;
-            renderProducts();
-        });
-    }
-    
-    const sortSelect = document.getElementById('productSort');
-    if (sortSelect) {
-        sortSelect.addEventListener('change', (e) => {
-            sortType = e.target.value;
             renderProducts();
         });
     }
