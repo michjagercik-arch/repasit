@@ -570,6 +570,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 mouseY = e.clientY;
                 cursor.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
             });
+            
+            document.addEventListener('mouseover', e => {
+                if (e.target.closest('button') || e.target.closest('.btn')) {
+                    cursor.style.opacity = '0';
+                    follower.style.opacity = '0';
+                } else {
+                    cursor.style.opacity = '1';
+                    follower.style.opacity = '1';
+                }
+            });
 
             function animateFollower() {
                 followerX += (mouseX - followerX) * 0.15;

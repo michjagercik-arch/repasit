@@ -824,8 +824,11 @@ h1, h2, h3, h4 {
 
 /* Premium Enhancements: High-visibility Custom Cursor */
 @media (pointer: fine) {
-  body, a, button, .product-card {
+  body, a, .product-card {
     cursor: none !important;
+  }
+  button, .btn {
+    cursor: pointer !important;
   }
 }
 #custom-cursor, #custom-cursor-follower {
