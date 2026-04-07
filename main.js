@@ -420,7 +420,10 @@ document.addEventListener('DOMContentLoaded', () => {
         
         let filteredProducts = filterType === 'all' 
             ? rawProducts 
-            : rawProducts.filter(p => p.type === filterType);
+            : rawProducts.filter(p => {
+                if (filterType === 'desktop' && p.type === 'gaming') return true;
+                return p.type === filterType;
+            });
             
         // String Sub-search mapping attributes
         if (searchQuery) {
