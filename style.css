@@ -531,10 +531,10 @@ h1, h2, h3, h4 {
 }
 
 .filter-btn.active {
-    background: var(--brand-primary);
-    border-color: var(--brand-primary);
+    background: var(--accent);
+    border-color: var(--accent);
     color: #fff;
-    box-shadow: 0 6px 16px rgba(67, 97, 238, 0.35); /* Glowing premium shadow */
+    box-shadow: 0 6px 16px rgba(58, 130, 246, 0.4); /* Glowing premium shadow */
     transform: translateY(-2px);
 }
 
