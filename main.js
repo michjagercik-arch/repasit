@@ -238,9 +238,11 @@ async function fetchProductsFromGoogleSheets() {
 
             let type = 'laptop';
             if (category.includes('AiO') || category.includes('PC Mini') || category.includes('PC SFF') || category.includes('Thin Client')) type = 'desktop';
-            if (category.includes('PC gaming')) type = 'desktop';
+            if (category.includes('PC gaming') || category.toLowerCase() === 'pc') type = 'desktop';
             if (category.includes('LCD')) type = 'monitor';
             if (category === 'DOCK') type = 'accessory';
+            
+            let baseType = type; // Store the original physical form factor
             
             if (category.toLowerCase().includes('gaming') || titleLower.includes('gaming') || titleLower.includes('gamer') || titleLower.includes('lynx')) {
                 type = 'gaming';
@@ -275,6 +277,7 @@ async function fetchProductsFromGoogleSheets() {
             products.push({
                 id: idCount++,
                 type,
+                baseType,
                 specs,
                 image,
                 title,
@@ -421,7 +424,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let filteredProducts = filterType === 'all' 
             ? rawProducts 
             : rawProducts.filter(p => {
-                if (filterType === 'desktop' && p.type === 'gaming') return true;
+                if (filterType === 'desktop') return p.baseType === 'desktop';
+                if (filterType === 'laptop') return p.baseType === 'laptop';
                 return p.type === filterType;
             });
             
