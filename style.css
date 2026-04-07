@@ -514,19 +514,28 @@ h1, h2, h3, h4 {
 }
 
 .filter-btn {
-    background: transparent;
+    background: rgba(128, 128, 128, 0.08); /* Subtle glassy fill initially */
     border: 1px solid var(--border);
-    color: var(--text-secondary);
-    padding: 8px 16px;
+    color: var(--text-primary); /* Brighter default text */
+    padding: 10px 20px;
     border-radius: var(--radius-full);
     cursor: pointer;
-    transition: all 0.2s;
-    font-size: 0.9rem;
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    font-size: 0.95rem;
+    font-weight: 500;
 }
 
-.filter-btn:hover, .filter-btn.active {
-    background: var(--text-primary);
-    color: var(--bg-primary);
+.filter-btn:hover {
+    background: rgba(128, 128, 128, 0.15);
+    transform: translateY(-2px);
+}
+
+.filter-btn.active {
+    background: var(--brand-primary);
+    border-color: var(--brand-primary);
+    color: #fff;
+    box-shadow: 0 6px 16px rgba(67, 97, 238, 0.35); /* Glowing premium shadow */
+    transform: translateY(-2px);
 }
 
 .products-grid {
