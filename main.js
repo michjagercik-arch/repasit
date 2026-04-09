@@ -40,6 +40,7 @@ const translations = {
         search_placeholder: "Hľadať produkt...",
         
         footer_desc: "Prémiová repasovaná technika pre tých, ktorí hľadajú kvalitu za rozumnú cenu.",
+        footer_wa: "Rýchly WhatsApp kontakt",
         footer_contact: "Kontakt",
         footer_links: "Rýchle odkazy",
         footer_copy: "© 2026 REPASit. Všetky práva vyhradené.",
@@ -100,6 +101,7 @@ const translations = {
         search_placeholder: "Hledat produkt...",
         
         footer_desc: "Prémiová repasovaná technika pro ty, kteří hledají kvalitu za rozumnou cenu.",
+        footer_wa: "Rychlý WhatsApp kontakt",
         footer_contact: "Kontakt",
         footer_links: "Rychlé odkazy",
         footer_copy: "© 2026 REPASit. Všechna práva vyhrazena.",
@@ -160,6 +162,7 @@ const translations = {
         search_placeholder: "Search product...",
         
         footer_desc: "Premium refurbished equipment for those seeking quality at a reasonable price.",
+        footer_wa: "Quick WhatsApp Contact",
         footer_contact: "Contact",
         footer_links: "Quick Links",
         footer_copy: "© 2026 REPASit. All rights reserved.",
