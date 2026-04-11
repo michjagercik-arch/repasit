@@ -237,6 +237,17 @@ async function fetchProductsFromGoogleSheets() {
             let specs = category;
             
             title = title.replace(/,$/, '').replace(/"/g, '').trim();
+            
+            // Extract trailing specs encoded in the title string via hyphenation
+            if (title.includes(' - ')) {
+                const parts = title.split(' - ');
+                title = parts[0].trim();
+                const extractedConfig = parts.slice(1).join(' - ').trim();
+                if (extractedConfig) {
+                    configRaw = extractedConfig + (configRaw ? ', ' + configRaw : '');
+                }
+            }
+            
             if (title.length > 50) title = title.substring(0, 50) + '...';
             
             const titleLower = title.toLowerCase();
@@ -276,7 +287,10 @@ async function fetchProductsFromGoogleSheets() {
             // Dynamic image assignment using the Bing proxy hack as built earlier
             let image = `https://tse2.mm.bing.net/th?q=${encodeURIComponent(query)}&w=600`;
             if (providedImgUrl && providedImgUrl.startsWith('http')) {
-                image = providedImgUrl;
+                // Safeguard against raw website page links causing broken SVG errors
+                if (!providedImgUrl.endsWith('.html') && !providedImgUrl.endsWith('.htm')) {
+                    image = providedImgUrl;
+                }
             }
             
             let finalDesc = configRaw || 'Presné špecifikácie na vyžiadanie.';
