@@ -61,7 +61,8 @@ const translations = {
         
         product_btn: "Mám záujem",
         product_grade: "Trieda A/B",
-        product_stock: "Skladom: {count} ks"
+        product_stock: "Skladom: {count} ks",
+        product_price_req: "Na vyžiadanie"
     },
     cz: {
         head_title: "REPASit | Prémiová technika",
@@ -124,7 +125,8 @@ const translations = {
         
         product_btn: "Mám zájem",
         product_grade: "Třída A/B",
-        product_stock: "Skladem: {count} ks"
+        product_stock: "Skladem: {count} ks",
+        product_price_req: "Na vyžádání"
     },
     en: {
         head_title: "REPASit | Premium Equipment",
@@ -185,9 +187,10 @@ const translations = {
         modal_submit: "Send Inquiry",
         modal_success: "Thank you! Your inquiry has been successfully sent. We will contact you soon.",
         
-        product_btn: "I'm interested",
-        product_grade: "Grade B",
-        product_stock: "In stock: {count} pcs"
+        product_btn: "I am interested",
+        product_grade: "Grade A/B",
+        product_stock: "In stock: {count} pcs",
+        product_price_req: "On request"
     }
 };
 
@@ -324,7 +327,7 @@ async function fetchProductsFromGoogleSheets() {
                 image,
                 title,
                 stock,
-                price: 'Na vyžiadanie', // Can map other columns if available
+                price: 'REQUEST_PRICE', // Placeholder tag converted during render
                 desc: { sk: descSK, cz: descCZ, en: descEN }
             });
         });
@@ -494,6 +497,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const desc = product.desc[currentLang] || product.desc.sk;
             const stockText = dict['product_stock'].replace('{count}', product.stock);
             
+            // Map request flag or previously cached Slovak overrides to localized string
+            const finalPrice = (product.price === 'REQUEST_PRICE' || product.price === 'Na vyžiadanie') ? dict['product_price_req'] : product.price;
+            
             card.innerHTML = `
                 <div class="product-image-wrap">
                     <span class="product-badge">${dict['product_grade']}</span>
@@ -507,7 +513,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <h3 class="product-title">${product.title}</h3>
                     <p class="product-desc">${desc}</p>
                     <div class="product-footer">
-                        <span class="product-price">${product.price}</span>
+                        <span class="product-price">${finalPrice}</span>
                         <button class="btn btn-primary btn-contact" data-product="${product.title}">${dict['product_btn']}</button>
                     </div>
                 </div>
