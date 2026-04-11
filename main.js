@@ -30,6 +30,7 @@ const translations = {
         filter_monitors: "Monitory",
         filter_accessories: "Príslušenstvo",
         filter_gaming: "Herné PC",
+        filter_servers: "Servery",
         
         contact_title: "Váš osobný IT partner",
         contact_text: "Nekupujete mačku vo vreci. Za každým jedným zariadením stojím osobne – od jeho výberu, cez testy až po dodanie. Som tu pre vás aj po nákupe, pripravený poradiť s výberom pre váš biznis či domácnosť.",
@@ -91,6 +92,7 @@ const translations = {
         filter_monitors: "Monitory",
         filter_accessories: "Příslušenství",
         filter_gaming: "Herní PC",
+        filter_servers: "Servery",
         
         contact_title: "Váš osobní IT partner",
         contact_text: "Nekupujete zajíce v pytli. Za každým jedním zařízením stojím osobně – od jeho výběru, přes testy až po dodání. Jsem tu pro vás i po nákupu, připraven poradit s výběrem pro váš byznys či domácnost.",
@@ -152,6 +154,7 @@ const translations = {
         filter_monitors: "Monitors",
         filter_accessories: "Accessories",
         filter_gaming: "Gaming PCs",
+        filter_servers: "Servers",
         
         contact_title: "Your Personal IT Partner",
         contact_text: "You aren't buying a pig in a poke. I personally stand behind every single device – from selection and testing to delivery. I am here for you even after the purchase, ready to advise on the best choice for your business or home.",
@@ -253,10 +256,12 @@ async function fetchProductsFromGoogleSheets() {
             const titleLower = title.toLowerCase();
 
             let type = 'laptop';
+            const catLC = category.toLowerCase();
             if (category.includes('AiO') || category.includes('PC Mini') || category.includes('PC SFF') || category.includes('Thin Client')) type = 'desktop';
             if (category.includes('PC gaming') || category.toLowerCase() === 'pc') type = 'desktop';
             if (category.includes('LCD')) type = 'monitor';
             if (category === 'DOCK') type = 'accessory';
+            if (catLC.includes('server')) type = 'server';
             
             let baseType = type; // Store the original physical form factor
             
@@ -280,6 +285,8 @@ async function fetchProductsFromGoogleSheets() {
                 query += ' monitor display front';
             } else if (type === 'accessory') {
                 query += ' dock station port replicator front view high quality';
+            } else if (type === 'server') {
+                query += ' rack tower server professional studio shot';
             } else {
                 query += ' laptop computer front view';
             }
@@ -448,6 +455,7 @@ document.addEventListener('DOMContentLoaded', () => {
             : rawProducts.filter(p => {
                 if (filterType === 'desktop') return p.baseType === 'desktop';
                 if (filterType === 'laptop') return p.baseType === 'laptop';
+                if (filterType === 'server') return p.baseType === 'server';
                 return p.type === filterType;
             });
             
