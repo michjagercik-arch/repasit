@@ -5,7 +5,7 @@
   /* Colors - Sleek Apple/WeFree inspired Dark Mode Theme */
   --bg-primary: #0a0a0A;
   --bg-secondary: #141416;
-  --bg-glass: rgba(20, 20, 22, 0.7);
+  --bg-glass: rgba(20, 20, 22, 0.9);
   
   --text-primary: #F8F8F8;
   --text-secondary: #9CA3AF;
@@ -39,7 +39,7 @@
 [data-theme="light"] {
   --bg-primary: #F5F5F7;
   --bg-secondary: #FFFFFF;
-  --bg-glass: rgba(255, 255, 255, 0.75);
+  --bg-glass: rgba(255, 255, 255, 0.92);
   
   --text-primary: #1D1D1F;
   --text-secondary: #86868B;
