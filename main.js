@@ -31,6 +31,7 @@ const translations = {
         filter_accessories: "Príslušenstvo",
         filter_gaming: "Herné PC",
         filter_servers: "Servery",
+        filter_apple: "Apple",
         
         contact_title: "Váš osobný IT partner",
         contact_text: "Nekupujete mačku vo vreci. Za každým jedným zariadením stojím osobne – od jeho výberu, cez testy až po dodanie. Som tu pre vás aj po nákupe, pripravený poradiť s výberom pre váš biznis či domácnosť.",
@@ -93,6 +94,7 @@ const translations = {
         filter_accessories: "Příslušenství",
         filter_gaming: "Herní PC",
         filter_servers: "Servery",
+        filter_apple: "Apple",
         
         contact_title: "Váš osobní IT partner",
         contact_text: "Nekupujete zajíce v pytli. Za každým jedním zařízením stojím osobně – od jeho výběru, přes testy až po dodání. Jsem tu pro vás i po nákupu, připraven poradit s výběrem pro váš byznys či domácnost.",
@@ -155,6 +157,7 @@ const translations = {
         filter_accessories: "Accessories",
         filter_gaming: "Gaming PCs",
         filter_servers: "Servers",
+        filter_apple: "Apple",
         
         contact_title: "Your Personal IT Partner",
         contact_text: "You aren't buying a pig in a poke. I personally stand behind every single device – from selection and testing to delivery. I am here for you even after the purchase, ready to advise on the best choice for your business or home.",
@@ -265,8 +268,14 @@ async function fetchProductsFromGoogleSheets() {
             
             let baseType = type; // Store the original physical form factor
             
-            if (category.toLowerCase().includes('gaming') || titleLower.includes('gaming') || titleLower.includes('gamer') || titleLower.includes('lynx')) {
-                type = 'gaming';
+            let isGaming = false;
+            let isApple = false;
+            
+            if (catLC.includes('gaming') || titleLower.includes('gaming') || titleLower.includes('gamer') || titleLower.includes('lynx')) {
+                isGaming = true;
+            }
+            if (catLC.includes('apple') || titleLower.includes('macbook') || titleLower.includes('imac') || titleLower.includes('mac mini') || titleLower.includes('ipad') || titleLower.includes('iphone') || titleLower.includes('studio')) {
+                isApple = true;
             }
             
             let query = title;
@@ -287,6 +296,8 @@ async function fetchProductsFromGoogleSheets() {
                 query += ' dock station port replicator front view high quality';
             } else if (type === 'server') {
                 query += ' rack tower server professional studio shot';
+            } else if (isApple) {
+                query += ' apple mac computer professional studio shot';
             } else {
                 query += ' laptop computer front view';
             }
@@ -307,6 +318,8 @@ async function fetchProductsFromGoogleSheets() {
                 id: idCount++,
                 type,
                 baseType,
+                isGaming: isGaming,
+                isApple: isApple,
                 specs,
                 image,
                 title,
@@ -456,6 +469,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (filterType === 'desktop') return p.baseType === 'desktop';
                 if (filterType === 'laptop') return p.baseType === 'laptop';
                 if (filterType === 'server') return p.baseType === 'server';
+                if (filterType === 'apple') return p.isApple;
                 return p.type === filterType;
             });
             
