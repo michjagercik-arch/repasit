@@ -231,6 +231,8 @@ async function fetchProductsFromGoogleSheets() {
             let stockRaw = tokens[3] ? tokens[3].trim() : '';
             let stock = parseInt(stockRaw) || 1;
             
+            let providedImgUrl = tokens[6] ? tokens[6].trim().replace(/^"|"$/g, '').replace('\r', '') : '';
+            
             let title = cleanName;
             let specs = category;
             
@@ -273,6 +275,9 @@ async function fetchProductsFromGoogleSheets() {
             
             // Dynamic image assignment using the Bing proxy hack as built earlier
             let image = `https://tse2.mm.bing.net/th?q=${encodeURIComponent(query)}&w=600`;
+            if (providedImgUrl && providedImgUrl.startsWith('http')) {
+                image = providedImgUrl;
+            }
             
             let finalDesc = configRaw || 'Presné špecifikácie na vyžiadanie.';
             let descSK = finalDesc, descCZ = finalDesc, descEN = finalDesc;
