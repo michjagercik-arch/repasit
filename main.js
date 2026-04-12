@@ -366,7 +366,10 @@ document.addEventListener('DOMContentLoaded', () => {
         document.documentElement.lang = lang;
         
         applyTranslations();
-        renderProducts(document.querySelector('.filter-btn.active').getAttribute('data-filter'));
+        // Prevent destroying Skeleton HTML placeholders natively bound before initial async fetch completes
+        if (rawProducts.length > 0) {
+            renderProducts(document.querySelector('.filter-btn.active').getAttribute('data-filter'));
+        }
     }
 
     function applyTranslations() {
@@ -480,6 +483,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (filterType === 'laptop') return p.baseType === 'laptop';
                 if (filterType === 'server') return p.baseType === 'server';
                 if (filterType === 'apple') return p.isApple;
+                if (filterType === 'gaming') return p.isGaming;
                 return p.type === filterType;
             });
             
