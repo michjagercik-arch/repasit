@@ -207,8 +207,9 @@ async function fetchProductsFromGoogleSheets() {
         let idCount = 1;
         const products = [];
         const seen = new Set();
+        let imgColIndex = 6; // Fallback if header row 'IMG' tag not detected
         
-        lines.forEach(line => {
+        lines.forEach((line, index) => {
             let tokens = [];
             let insideQuote = false;
             let currentToken = '';
@@ -222,6 +223,11 @@ async function fetchProductsFromGoogleSheets() {
                 }
             }
             tokens.push(currentToken);
+
+            if (index === 0) {
+                const foundIndex = tokens.findIndex(t => t.trim().replace('\r', '').toUpperCase() === 'IMG');
+                if (foundIndex !== -1) imgColIndex = foundIndex;
+            }
 
             if (tokens.length < 2) return;
             
@@ -240,7 +246,8 @@ async function fetchProductsFromGoogleSheets() {
             let stockRaw = tokens[3] ? tokens[3].trim() : '';
             let stock = parseInt(stockRaw) || 1;
             
-            let providedImgUrl = tokens[6] ? tokens[6].trim().replace(/^"|"$/g, '').replace('\r', '') : '';
+            // Reference dynamically resolved array layout position to immune vs schema drift
+            let providedImgUrl = tokens[imgColIndex] ? tokens[imgColIndex].trim().replace(/^"|"$/g, '').replace('\r', '') : '';
             
             let title = cleanName;
             let specs = category;
