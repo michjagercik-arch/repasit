@@ -29,7 +29,7 @@ const translations = {
         filter_desktops: "Stolné PC",
         filter_monitors: "Monitory",
         filter_accessories: "Príslušenstvo",
-        filter_gaming: "Herné PC",
+        filter_gaming: "Herné",
         filter_servers: "Servery",
         filter_apple: "Apple",
         
@@ -93,7 +93,7 @@ const translations = {
         filter_desktops: "Stolní PC",
         filter_monitors: "Monitory",
         filter_accessories: "Příslušenství",
-        filter_gaming: "Herní PC",
+        filter_gaming: "Herní",
         filter_servers: "Servery",
         filter_apple: "Apple",
         
@@ -157,7 +157,7 @@ const translations = {
         filter_desktops: "Desktops",
         filter_monitors: "Monitors",
         filter_accessories: "Accessories",
-        filter_gaming: "Gaming PCs",
+        filter_gaming: "Gaming",
         filter_servers: "Servers",
         filter_apple: "Apple",
         
