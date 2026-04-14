@@ -613,9 +613,9 @@ h1, h2, h3, h4 {
 .badge-on-way {
     right: auto;
     left: 16px;
-    background: rgba(59, 130, 246, 0.1);
-    color: var(--accent);
-    border-color: rgba(59, 130, 246, 0.2);
+    background: rgba(245, 158, 11, 0.15);
+    color: #f59e0b;
+    border-color: rgba(245, 158, 11, 0.3);
 }
 
 .product-content {
