@@ -62,7 +62,8 @@ const translations = {
         product_btn: "Mám záujem",
         product_grade: "Trieda A/B",
         product_stock: "Skladom: {count} ks",
-        product_price_req: "Na vyžiadanie"
+        product_price_req: "Na vyžiadanie",
+        product_on_way: "Na ceste"
     },
     cz: {
         head_title: "REPASit | Prémiová technika",
@@ -126,7 +127,8 @@ const translations = {
         product_btn: "Mám zájem",
         product_grade: "Třída A/B",
         product_stock: "Skladem: {count} ks",
-        product_price_req: "Na vyžádání"
+        product_price_req: "Na vyžádání",
+        product_on_way: "Na cestě"
     },
     en: {
         head_title: "REPASit | Premium Equipment",
@@ -190,7 +192,8 @@ const translations = {
         product_btn: "I am interested",
         product_grade: "Grade A/B",
         product_stock: "In stock: {count} pcs",
-        product_price_req: "On request"
+        product_price_req: "On request",
+        product_on_way: "On the way"
     }
 };
 
@@ -264,6 +267,12 @@ async function fetchProductsFromGoogleSheets() {
                 }
             }
             
+            let isOnWay = false;
+            if (/na cest[eě]/i.test(configRaw)) {
+                isOnWay = true;
+                configRaw = configRaw.replace(/na cest[eě]/gi, '').replace(/^[,\s-]+|[,\s-]+$/g, '').replace(/,\s*,/g, ',').trim();
+            }
+            
             if (title.length > 50) title = title.substring(0, 50) + '...';
             
             const titleLower = title.toLowerCase();
@@ -330,6 +339,7 @@ async function fetchProductsFromGoogleSheets() {
                 baseType,
                 isGaming: isGaming,
                 isApple: isApple,
+                isOnWay: isOnWay,
                 specs,
                 image,
                 title,
@@ -511,9 +521,12 @@ document.addEventListener('DOMContentLoaded', () => {
             // Map request flag or previously cached Slovak overrides to localized string
             const finalPrice = (product.price === 'REQUEST_PRICE' || product.price === 'Na vyžiadanie') ? dict['product_price_req'] : product.price;
             
+            const onWayBadge = product.isOnWay ? `<span class="product-badge badge-on-way">${dict['product_on_way']}</span>` : '';
+            
             card.innerHTML = `
                 <div class="product-image-wrap">
                     <span class="product-badge">${dict['product_grade']}</span>
+                    ${onWayBadge}
                     <img src="${product.image}" alt="${product.title}">
                 </div>
                 <div class="product-content">

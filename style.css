@@ -610,6 +610,14 @@ h1, h2, h3, h4 {
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
+.badge-on-way {
+    right: auto;
+    left: 16px;
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--accent);
+    border-color: rgba(59, 130, 246, 0.2);
+}
+
 .product-content {
   padding: 24px;
   display: flex;
