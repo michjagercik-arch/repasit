@@ -288,7 +288,7 @@ async function fetchProductsFromGoogleSheets() {
             if (category.includes('AiO') || category.includes('PC Mini') || category.includes('PC SFF') || category.includes('Thin Client')) type = 'desktop';
             if (category.includes('PC gaming') || category.toLowerCase() === 'pc') type = 'desktop';
             if (category.includes('LCD')) type = 'monitor';
-            if (category === 'DOCK') type = 'accessory';
+            if (category === 'DOCK' || catLC.includes('kabel') || catLC.includes('kabely')) type = 'accessory';
             if (catLC.includes('server')) type = 'server';
             
             let baseType = type; // Store the original physical form factor
@@ -318,7 +318,11 @@ async function fetchProductsFromGoogleSheets() {
             } else if (type === 'monitor') {
                 query += ' monitor display front';
             } else if (type === 'accessory') {
-                query += ' dock station port replicator front view high quality';
+                if (catLC.includes('kabel') || catLC.includes('kabely')) {
+                    query += ' computer cable professional studio shot';
+                } else {
+                    query += ' dock station port replicator front view high quality';
+                }
             } else if (type === 'server') {
                 query += ' rack tower server professional studio shot';
             } else if (isApple) {
