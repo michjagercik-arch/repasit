@@ -573,9 +573,9 @@ h1, h2, h3, h4 {
 }
 
 .product-card:hover {
-  border-color: var(--border-hover);
+  border-color: var(--accent);
   transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15), 0 0 25px rgba(58, 130, 246, 0.3);
 }
 
 .product-image-wrap {
@@ -673,7 +673,7 @@ h1, h2, h3, h4 {
 
 .product-footer {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   border-top: 1px solid var(--border);
   padding-top: 20px;
@@ -754,6 +754,48 @@ h1, h2, h3, h4 {
   font-size: 0.95rem;
 }
 
+.modal-options {
+  margin-bottom: 24px;
+}
+
+.btn-wa {
+  background: #25D366;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);
+  padding: 14px 28px;
+}
+
+.btn-wa:hover {
+  background: #128C7E;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+}
+
+.modal-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 24px 0 0 0;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.modal-divider::before, .modal-divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid var(--border);
+}
+
+.modal-divider span {
+  padding: 0 10px;
+}
+
 .form-group {
   margin-bottom: 20px;
 }
@@ -781,6 +823,8 @@ h1, h2, h3, h4 {
 .form-group textarea:focus {
   outline: none;
   border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(58, 130, 246, 0.2);
+  background: var(--bg-primary);
 }
 
 .form-success {
@@ -855,6 +899,16 @@ h1, h2, h3, h4 {
   padding-top: 40px;
   color: var(--text-secondary);
   font-size: 0.85rem;
+}
+
+/* =========================================================================
+   UI ENHANCEMENTS (Search Highlight)
+   ========================================================================= */
+mark.highlight {
+  background: transparent;
+  color: var(--accent);
+  font-weight: 700;
+  padding: 0;
 }
 
 /* =========================================================================

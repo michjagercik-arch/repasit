@@ -54,9 +54,11 @@ const translations = {
         modal_name_ph: "Napr. Ján Novák",
         modal_email: "E-mail",
         modal_email_ph: "Váš pracovný e-mail",
-        modal_msg: "Správa (voliteľné)",
+        modal_msg: "Správa",
         modal_msg_ph: "Máte špecifickú požiadavku k zariadeniu?",
         modal_submit: "Odoslať dopyt",
+        modal_wa: "Rýchla správa cez WhatsApp",
+        modal_or: "alebo použite formulár nižšie",
         modal_success: "Ďakujeme! Váš dopyt bol úspešne odoslaný. Čoskoro vás budeme kontaktovať.",
         
         product_btn: "Mám záujem",
@@ -119,9 +121,11 @@ const translations = {
         modal_name_ph: "Např. Jan Novák",
         modal_email: "E-mail",
         modal_email_ph: "Váš pracovní e-mail",
-        modal_msg: "Zpráva (volitelné)",
+        modal_msg: "Zpráva",
         modal_msg_ph: "Máte specifický požadavek k zařízení?",
         modal_submit: "Odeslat poptávku",
+        modal_wa: "Rychlá zpráva přes WhatsApp",
+        modal_or: "nebo použijte formulář níže",
         modal_success: "Děkujeme! Vaše poptávka byla úspěšně odeslána. Brzy vás budeme kontaktovat.",
         
         product_btn: "Mám zájem",
@@ -184,9 +188,11 @@ const translations = {
         modal_name_ph: "e.g., John Doe",
         modal_email: "E-mail",
         modal_email_ph: "Your work e-mail",
-        modal_msg: "Message (optional)",
+        modal_msg: "Message",
         modal_msg_ph: "Do you have any specific requirements for the device?",
         modal_submit: "Send Inquiry",
+        modal_wa: "Quick message via WhatsApp",
+        modal_or: "or use the form below",
         modal_success: "Thank you! Your inquiry has been successfully sent. We will contact you soon.",
         
         product_btn: "I am interested",
@@ -500,7 +506,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // String Sub-search mapping attributes
         if (searchQuery) {
             const q = searchQuery.toLowerCase();
-            filteredProducts = filteredProducts.filter(p => p.title.toLowerCase().includes(q) || (p.specs && p.specs.toLowerCase().includes(q)));
+            filteredProducts = filteredProducts.filter(p => {
+                const titleMatch = p.title.toLowerCase().includes(q);
+                const specsMatch = p.specs && p.specs.toLowerCase().includes(q);
+                const currentDesc = p.desc[currentLang] || p.desc.sk || '';
+                const descMatch = currentDesc.toLowerCase().includes(q);
+                return titleMatch || specsMatch || descMatch;
+            });
         }
         
         const dict = translations[currentLang];
@@ -515,13 +527,21 @@ document.addEventListener('DOMContentLoaded', () => {
             card.className = 'product-card reveal-up';
             card.style.transitionDelay = `${(idx % 4) * 0.1}s`;
             
-            const desc = product.desc[currentLang] || product.desc.sk;
+            let desc = product.desc[currentLang] || product.desc.sk;
             const stockText = dict['product_stock'].replace('{count}', product.stock);
             
-            // Map request flag or previously cached Slovak overrides to localized string
-            const finalPrice = (product.price === 'REQUEST_PRICE' || product.price === 'Na vyžiadanie') ? dict['product_price_req'] : product.price;
-            
             const onWayBadge = product.isOnWay ? `<span class="product-badge badge-on-way">${dict['product_on_way']}</span>` : '';
+            
+            // Apply highlight if there is a search query
+            let highlightedTitle = product.title;
+            if (searchQuery) {
+                const searchWords = searchQuery.trim().split(/\s+/);
+                searchWords.forEach(word => {
+                    const regex = new RegExp(`(${word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, "gi");
+                    highlightedTitle = highlightedTitle.replace(regex, '<mark class="highlight">$1</mark>');
+                    desc = desc.replace(regex, '<mark class="highlight">$1</mark>');
+                });
+            }
             
             card.innerHTML = `
                 <div class="product-image-wrap">
@@ -534,10 +554,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="product-specs">${product.specs}</div>
                         <div class="product-stock">${stockText}</div>
                     </div>
-                    <h3 class="product-title">${product.title}</h3>
+                    <h3 class="product-title">${highlightedTitle}</h3>
                     <p class="product-desc">${desc}</p>
                     <div class="product-footer">
-                        <span class="product-price">${finalPrice}</span>
                         <button class="btn btn-primary btn-contact" data-product="${product.title}">${dict['product_btn']}</button>
                     </div>
                 </div>
@@ -601,8 +620,27 @@ document.addEventListener('DOMContentLoaded', () => {
         if(productName) {
             const tpl = dict['modal_tpl'] || "Produkt: <strong>{0}</strong>";
             modalProductTarget.innerHTML = tpl.replace('{0}', productName);
+            
+            const waBtn = document.getElementById('waContactBtn');
+            if (waBtn) {
+                let waText = '';
+                if (currentLang === 'cz') {
+                    waText = `Dobrý den, chci se zeptat na produkt: ${productName}`;
+                } else if (currentLang === 'en') {
+                    waText = `Hello, I'm interested in the product: ${productName}`;
+                } else {
+                    waText = `Dobrý deň, mám záujem o produkt: ${productName}`;
+                }
+                waBtn.href = `https://wa.me/420733676752?text=${encodeURIComponent(waText)}`;
+            }
         } else {
             modalProductTarget.innerHTML = dict['modal_general'];
+            
+            const waBtn = document.getElementById('waContactBtn');
+            if (waBtn) {
+                let waText = (currentLang === 'cz') ? `Dobrý den, chci se zeptat na..` : (currentLang === 'en') ? `Hello, I'm interested in..` : `Dobrý deň, mám záujem o..`;
+                waBtn.href = `https://wa.me/420733676752?text=${encodeURIComponent(waText)}`;
+            }
         }
         
         inquiryForm.reset();
