@@ -135,7 +135,8 @@
 
     <!-- Footer -->
     <footer class="footer" id="kontakt">
-      <div class="footer-container">
+      <div class="mesh-bg footer-mesh"></div>
+      <div class="footer-container relative-z">
         <div class="footer-col">
           <div class="footer-logo-group">
             <h3 class="footer-logo">REPAS<span class="accent">it</span></h3>
@@ -145,23 +146,33 @@
         </div>
         <div class="footer-col">
           <h4 data-i18n="footer_contact">Kontakt</h4>
-          <p><a href="mailto:repasit@qbiti.cz">repasit@qbiti.cz</a></p>
-          <p><a href="tel:+420733676752">+420 733 676 752</a></p>
-          <p style="margin-top: 15px;">
-            <a href="https://wa.me/420733676752" target="_blank" rel="noopener noreferrer" style="color:#25d366; display:inline-flex; align-items:center; gap:8px; font-weight:500;">
-              <svg style="width:18px;height:18px;fill:currentColor;" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zM223.9 414.4c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 334.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-2.6-4.5 0-6.9 2.5-9.4 5.1-5 10.8-11.4 15.6-15.5 3-2.6 3.6-5 4.6-8.9 1.4-5.6-1-10.4-3.5-15.3-2.8-5.6-18.4-44.3-24.8-60.6-6-15.7-12-13.6-16.6-14-4-.3-8.8-.3-13.6-.3-4.6 0-12.5 1.9-19.4 9.3s-26.4 25.9-26.4 63 27.3 72.8 31 77.8c3.7 5 53.1 84.7 130.5 116.8 45.4 18.6 63 21 86 17.6 21.8-3.2 50.8-19.9 59.8-40.3 8.8-20.4 8.8-37.9 6-41.6-2.5-3.8-6.1-5.7-11.6-8.5z"/></svg> 
+          <p>
+            <a href="mailto:repasit@qbiti.cz" class="footer-link">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              repasit@qbiti.cz
+            </a>
+          </p>
+          <p>
+            <a href="tel:+420733676752" class="footer-link">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              +420 733 676 752
+            </a>
+          </p>
+          <p style="margin-top: 10px;">
+            <a href="https://wa.me/420733676752" target="_blank" rel="noopener noreferrer" class="footer-wa-link">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zM223.9 414.4c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 334.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-2.6-4.5 0-6.9 2.5-9.4 5.1-5 10.8-11.4 15.6-15.5 3-2.6 3.6-5 4.6-8.9 1.4-5.6-1-10.4-3.5-15.3-2.8-5.6-18.4-44.3-24.8-60.6-6-15.7-12-13.6-16.6-14-4-.3-8.8-.3-13.6-.3-4.6 0-12.5 1.9-19.4 9.3s-26.4 25.9-26.4 63 27.3 72.8 31 77.8c3.7 5 53.1 84.7 130.5 116.8 45.4 18.6 63 21 86 17.6 21.8-3.2 50.8-19.9 59.8-40.3 8.8-20.4 8.8-37.9 6-41.6-2.5-3.8-6.1-5.7-11.6-8.5z"/></svg> 
               <span data-i18n="footer_wa">Rýchly WhatsApp kontakt</span>
             </a>
           </p>
         </div>
         <div class="footer-col">
           <h4 data-i18n="footer_links">Rýchle odkazy</h4>
-          <a href="#hero" data-i18n="nav_home">Domov</a>
-          <a href="#produkty" data-i18n="nav_products">Produkty</a>
-          <a href="#vyhody" data-i18n="nav_why">O nás</a>
+          <a href="#hero" class="footer-link" data-i18n="nav_home">Domov</a>
+          <a href="#produkty" class="footer-link" data-i18n="nav_products">Produkty</a>
+          <a href="#vyhody" class="footer-link" data-i18n="nav_why">O nás</a>
         </div>
       </div>
-      <div class="footer-bottom">
+      <div class="footer-bottom relative-z">
         <p><span data-i18n="footer_copy">&copy; 2026 REPASit. Všetky práva vyhradené.</span></p>
       </div>
     </footer>
