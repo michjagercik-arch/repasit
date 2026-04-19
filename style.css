@@ -938,22 +938,23 @@ h1, h2, h3, h4 {
 }
 
 .footer-wa-link {
-  color: #25d366;
+  color: #ffffff;
   display: inline-flex;
   align-items: center;
   gap: 8px;
   font-weight: 600;
-  background: rgba(37, 211, 102, 0.1);
-  padding: 8px 16px;
+  background: #25d366;
+  padding: 10px 20px;
   border-radius: var(--radius-full);
-  border: 1px solid rgba(37, 211, 102, 0.2);
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
   transition: all var(--transition-fast);
 }
 
 .footer-wa-link:hover {
-  background: rgba(37, 211, 102, 0.2);
+  background: #128C7E;
+  color: #ffffff;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
 }
 
 .footer-bottom {
