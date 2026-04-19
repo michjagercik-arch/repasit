@@ -556,7 +556,14 @@ h1, h2, h3, h4 {
 }
 
 .product-card {
+  --bg-primary: #F5F5F7;
+  --bg-secondary: #FFFFFF;
+  --text-primary: #1D1D1F;
+  --text-secondary: #86868B;
+  --border: rgba(0, 0, 0, 0.08);
+  --border-hover: rgba(0, 0, 0, 0.15);
   background: var(--bg-secondary);
+  color: var(--text-primary);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -575,7 +582,7 @@ h1, h2, h3, h4 {
   position: relative;
   aspect-ratio: 4/3;
   overflow: hidden;
-  background: var(--bg-primary); /* Changed from hardcoded dark color to thematic */
+  background: #ffffff; /* Zmenené na snehobielu, aby sa produktové fotky zliali */
   display: flex;
   align-items: center;
   justify-content: center;
