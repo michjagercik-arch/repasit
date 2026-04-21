@@ -65,7 +65,8 @@ const translations = {
         product_grade: "Trieda A/B",
         product_stock: "Skladom: {count} ks",
         product_price_req: "Na vyžiadanie",
-        product_on_way: "Na ceste"
+        product_on_way: "Na ceste",
+        product_just_arrived: "Práve dorazilo"
     },
     cz: {
         head_title: "REPASit | Prémiová technika",
@@ -132,7 +133,8 @@ const translations = {
         product_grade: "Třída A/B",
         product_stock: "Skladem: {count} ks",
         product_price_req: "Na vyžádání",
-        product_on_way: "Na cestě"
+        product_on_way: "Na cestě",
+        product_just_arrived: "Právě dorazilo"
     },
     en: {
         head_title: "REPASit | Premium Equipment",
@@ -199,7 +201,8 @@ const translations = {
         product_grade: "Grade A/B",
         product_stock: "In stock: {count} pcs",
         product_price_req: "On request",
-        product_on_way: "On the way"
+        product_on_way: "On the way",
+        product_just_arrived: "Just arrived"
     }
 };
 
@@ -278,6 +281,12 @@ async function fetchProductsFromGoogleSheets() {
                 isOnWay = true;
                 configRaw = configRaw.replace(/na cest[eě]/gi, '').replace(/^[,\s-]+|[,\s-]+$/g, '').replace(/,\s*,/g, ',').trim();
             }
+
+            let isJustArrived = false;
+            if (/pr[aá]v[eě]\s*dorazilo/i.test(configRaw)) {
+                isJustArrived = true;
+                configRaw = configRaw.replace(/pr[aá]v[eě]\s*dorazilo/gi, '').replace(/^[,\s-]+|[,\s-]+$/g, '').replace(/,\s*,/g, ',').trim();
+            }
             
             if (title.length > 50) title = title.substring(0, 50) + '...';
             
@@ -350,6 +359,7 @@ async function fetchProductsFromGoogleSheets() {
                 isGaming: isGaming,
                 isApple: isApple,
                 isOnWay: isOnWay,
+                isJustArrived: isJustArrived,
                 specs,
                 image,
                 title,
@@ -535,6 +545,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const stockText = dict['product_stock'].replace('{count}', product.stock);
             
             const onWayBadge = product.isOnWay ? `<span class="product-badge badge-on-way">${dict['product_on_way']}</span>` : '';
+            const justArrivedBadge = product.isJustArrived ? `<span class="product-badge badge-just-arrived">${dict['product_just_arrived']}</span>` : '';
             
             // Apply highlight if there is a search query
             let highlightedTitle = product.title;
@@ -551,6 +562,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="product-image-wrap">
                     <span class="product-badge">${dict['product_grade']}</span>
                     ${onWayBadge}
+                    ${justArrivedBadge}
                     <img src="${product.image}" alt="${product.title}">
                 </div>
                 <div class="product-content">

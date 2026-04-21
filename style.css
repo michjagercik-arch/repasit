@@ -625,6 +625,14 @@ h1, h2, h3, h4 {
     border-color: rgba(245, 158, 11, 0.3);
 }
 
+.badge-just-arrived {
+    right: auto;
+    left: 16px;
+    background: rgba(16, 185, 129, 0.15);
+    color: #10b981;
+    border-color: rgba(16, 185, 129, 0.3);
+}
+
 .product-content {
   padding: 24px;
   display: flex;
