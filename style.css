@@ -633,6 +633,39 @@ h1, h2, h3, h4 {
     border-color: rgba(16, 185, 129, 0.3);
 }
 
+.badge-sold-out {
+    right: auto;
+    left: 16px;
+    background: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+    border-color: rgba(239, 68, 68, 0.3);
+}
+
+.product-sold-out {
+    border-color: var(--border) !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+.product-sold-out .product-image-wrap img {
+    opacity: 0.5;
+    filter: grayscale(100%);
+}
+
+.product-sold-out .product-title,
+.product-sold-out .product-desc,
+.product-sold-out .product-header-info {
+    opacity: 0.6;
+}
+
+.product-sold-out .btn-contact {
+    background: var(--bg-primary);
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
 .product-content {
   padding: 24px;
   display: flex;

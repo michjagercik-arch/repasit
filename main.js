@@ -66,7 +66,8 @@ const translations = {
         product_stock: "Skladom: {count} ks",
         product_price_req: "Na vyžiadanie",
         product_on_way: "Na ceste",
-        product_just_arrived: "Práve dorazilo"
+        product_just_arrived: "Práve dorazilo",
+        product_sold_out: "Momentálne vypredané"
     },
     cz: {
         head_title: "REPASit | Prémiová technika",
@@ -134,7 +135,8 @@ const translations = {
         product_stock: "Skladem: {count} ks",
         product_price_req: "Na vyžádání",
         product_on_way: "Na cestě",
-        product_just_arrived: "Právě dorazilo"
+        product_just_arrived: "Právě dorazilo",
+        product_sold_out: "Momentálně vyprodáno"
     },
     en: {
         head_title: "REPASit | Premium Equipment",
@@ -202,7 +204,8 @@ const translations = {
         product_stock: "In stock: {count} pcs",
         product_price_req: "On request",
         product_on_way: "On the way",
-        product_just_arrived: "Just arrived"
+        product_just_arrived: "Just arrived",
+        product_sold_out: "Currently sold out"
     }
 };
 
@@ -287,6 +290,12 @@ async function fetchProductsFromGoogleSheets() {
                 isJustArrived = true;
                 configRaw = configRaw.replace(/pr[aá]v[eě]\s*dorazilo/gi, '').replace(/^[,\s-]+|[,\s-]+$/g, '').replace(/,\s*,/g, ',').trim();
             }
+
+            let isSoldOut = false;
+            if (/(?:^|,\s*|\s-\s*)(?:x|vypredan[eé]|vyprod[aá]no)(?:$|,\s*|\s-\s*)/i.test(configRaw) && !/OS X/i.test(configRaw)) {
+                isSoldOut = true;
+                configRaw = configRaw.replace(/(?:^|,\s*|\s-\s*)(?:x|vypredan[eé]|vyprod[aá]no)(?:$|,\s*|\s-\s*)/gi, '').replace(/^[,\s-]+|[,\s-]+$/g, '').replace(/,\s*,/g, ',').trim();
+            }
             
             if (title.length > 50) title = title.substring(0, 50) + '...';
             
@@ -360,6 +369,7 @@ async function fetchProductsFromGoogleSheets() {
                 isApple: isApple,
                 isOnWay: isOnWay,
                 isJustArrived: isJustArrived,
+                isSoldOut: isSoldOut,
                 specs,
                 image,
                 title,
@@ -538,7 +548,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         filteredProducts.forEach((product, idx) => {
             const card = document.createElement('article');
-            card.className = 'product-card reveal-up';
+            card.className = 'product-card reveal-up' + (product.isSoldOut ? ' product-sold-out' : '');
             card.style.transitionDelay = `${(idx % 4) * 0.1}s`;
             
             let desc = product.desc[currentLang] || product.desc.sk;
@@ -546,6 +556,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const onWayBadge = product.isOnWay ? `<span class="product-badge badge-on-way">${dict['product_on_way']}</span>` : '';
             const justArrivedBadge = product.isJustArrived ? `<span class="product-badge badge-just-arrived">${dict['product_just_arrived']}</span>` : '';
+            const soldOutBadge = product.isSoldOut ? `<span class="product-badge badge-sold-out">${dict['product_sold_out']}</span>` : '';
             
             // Apply highlight if there is a search query
             let highlightedTitle = product.title;
@@ -563,6 +574,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span class="product-badge">${dict['product_grade']}</span>
                     ${onWayBadge}
                     ${justArrivedBadge}
+                    ${soldOutBadge}
                     <img src="${product.image}" alt="${product.title}">
                 </div>
                 <div class="product-content">
