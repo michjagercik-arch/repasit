@@ -305,6 +305,7 @@ async function fetchProductsFromGoogleSheets() {
             const catLC = category.toLowerCase();
             if (category.includes('AiO') || category.includes('PC Mini') || category.includes('PC SFF') || category.includes('Thin Client')) type = 'desktop';
             if (category.includes('PC gaming') || category.toLowerCase() === 'pc') type = 'desktop';
+            if (titleLower.includes('imac') || titleLower.includes('mac mini') || titleLower.includes('mac pro') || titleLower.includes('mac studio')) type = 'desktop';
             if (category.includes('LCD')) type = 'monitor';
             if (category === 'DOCK' || catLC.includes('kabel') || catLC.includes('kabely')) type = 'accessory';
             if (catLC.includes('server')) type = 'server';
