@@ -1,0 +1,1008 @@
+commit 5213d6cfb1334883d1f3818f66ee15316241d50f
+Author: Michal Jagerčík <michal.jagercik@qbiti.cz>
+Date:   Tue Apr 28 16:41:47 2026 +0200
+
+    refactor: remove hero image asset and associated Open Graph metadata tags from index.html
+
+diff --git a/index.html b/index.html
+index 1d790f3..3074736 100644
+--- a/index.html
++++ b/index.html
+@@ -4,8 +4,6 @@
+     <meta charset="UTF-8" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <meta name="description" content="Katalóg prémiovej repasovanej IT techniky. Garancia kvality, výborné ceny a spoľahlivý servis." />
+-    <meta property="og:image" content="https://repasit.qbiti.cz/hero-repasit.png" />
+-    <meta property="og:title" content="REPASit | Prémiová technika" />
+     <title data-i18n="head_title">REPASit | Prémiová technika</title>
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+commit 1d329eb7c1435ca80947b914a2e4bebc09b7407c
+Author: Michal Jagerčík <michal.jagercik@qbiti.cz>
+Date:   Mon Apr 27 20:36:34 2026 +0200
+
+    feat: add Open Graph meta tags for social media sharing to index.html
+
+diff --git a/index.html b/index.html
+index 3074736..1d790f3 100644
+--- a/index.html
++++ b/index.html
+@@ -4,6 +4,8 @@
+     <meta charset="UTF-8" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <meta name="description" content="Katalóg prémiovej repasovanej IT techniky. Garancia kvality, výborné ceny a spoľahlivý servis." />
++    <meta property="og:image" content="https://repasit.qbiti.cz/hero-repasit.png" />
++    <meta property="og:title" content="REPASit | Prémiová technika" />
+     <title data-i18n="head_title">REPASit | Prémiová technika</title>
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+commit 35835e7ebc9572fad34cb86603b2436c6bc586fd
+Author: Michal Jagerčík <michal.jagercik@qbiti.cz>
+Date:   Mon Apr 27 20:36:18 2026 +0200
+
+    feat: add hero image asset and update Open Graph metadata in index.html
+
+diff --git a/index.html b/index.html
+index 75878cd..3074736 100644
+--- a/index.html
++++ b/index.html
+@@ -63,7 +63,7 @@
+       <div class="hero-visual fade-in" style="animation-delay: 0.5s">
+         <!-- Abstract glowing orb or sleek laptop mockup -->
+         <div class="glow-orb"></div>
+-        <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&q=80&w=1000" alt="Sleek laptop" class="hero-image" />
++        <img src="hero-repasit.png" alt="REPASit by QBITI notebook preview" class="hero-image" />
+       </div>
+     </header>
+ 
+
+commit bc772531f6af4be82afc7bd47234bec489ee7938
+Author: Michal Jagerčík <michal.jagercik@qbiti.cz>
+Date:   Sat Apr 25 16:31:40 2026 +0200
+
+    feat: add favicon to index page
+
+diff --git a/index.html b/index.html
+index 8bed896..75878cd 100644
+--- a/index.html
++++ b/index.html
+@@ -11,6 +11,7 @@
+     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700&display=swap" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+     <link rel="stylesheet" href="/style.css" />
++    <link rel="icon" type="image/png" href="favicon.png">
+   </head>
+   <body>
+     <!-- Navbar -->
+
+commit dfef33f6fe2c294a8dbf1f6e3f2b3b0a65a5235e
+Author: Michal Jagerčík <michal.jagercik@qbiti.cz>
+Date:   Sun Apr 19 23:11:22 2026 +0200
+
+    feat: redesign footer with animated mesh background and enhanced contact link styling
+
+diff --git a/index.html b/index.html
+index 5074d7a..8bed896 100644
+--- a/index.html
++++ b/index.html
+@@ -135,7 +135,8 @@
+ 
+     <!-- Footer -->
+     <footer class="footer" id="kontakt">
+-      <div class="footer-container">
++      <div class="mesh-bg footer-mesh"></div>
++      <div class="footer-container relative-z">
+         <div class="footer-col">
+           <div class="footer-logo-group">
+             <h3 class="footer-logo">REPAS<span class="accent">it</span></h3>
+@@ -145,23 +146,33 @@
+         </div>
+         <div class="footer-col">
+           <h4 data-i18n="footer_contact">Kontakt</h4>
+-          <p><a href="mailto:repasit@qbiti.cz">repasit@qbiti.cz</a></p>
+-          <p><a href="tel:+420733676752">+420 733 676 752</a></p>
+-          <p style="margin-top: 15px;">
+-            <a href="https://wa.me/420733676752" target="_blank" rel="noopener noreferrer" style="color:#25d366; display:inline-flex; align-items:center; gap:8px; font-weight:500;">
+-              <svg style="width:18px;height:18px;fill:currentColor;" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zM223.9 414.4c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 334.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-2.6-4.5 0-6.9 2.5-9.4 5.1-5 10.8-11.4 15.6-15.5 3-2.6 3.6-5 4.6-8.9 1.4-5.6-1-10.4-3.5-15.3-2.8-5.6-18.4-44.3-24.8-60.6-6-15.7-12-13.6-16.6-14-4-.3-8.8-.3-13.6-.3-4.6 0-12.5 1.9-19.4 9.3s-26.4 25.9-26.4 63 27.3 72.8 31 77.8c3.7 5 53.1 84.7 130.5 116.8 45.4 18.6 63 21 86 17.6 21.8-3.2 50.8-19.9 59.8-40.3 8.8-20.4 8.8-37.9 6-41.6-2.5-3.8-6.1-5.7-11.6-8.5z"/></svg> 
++          <p>
++            <a href="mailto:repasit@qbiti.cz" class="footer-link">
++              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
++              repasit@qbiti.cz
++            </a>
++          </p>
++          <p>
++            <a href="tel:+420733676752" class="footer-link">
++              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
++              +420 733 676 752
++            </a>
++          </p>
++          <p style="margin-top: 10px;">
++            <a href="https://wa.me/420733676752" target="_blank" rel="noopener noreferrer" class="footer-wa-link">
++              <svg width="16" height="16" fill="currentColor" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zM223.9 414.4c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 334.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-2.6-4.5 0-6.9 2.5-9.4 5.1-5 10.8-11.4 15.6-15.5 3-2.6 3.6-5 4.6-8.9 1.4-5.6-1-10.4-3.5-15.3-2.8-5.6-18.4-44.3-24.8-60.6-6-15.7-12-13.6-16.6-14-4-.3-8.8-.3-13.6-.3-4.6 0-12.5 1.9-19.4 9.3s-26.4 25.9-26.4 63 27.3 72.8 31 77.8c3.7 5 53.1 84.7 130.5 116.8 45.4 18.6 63 21 86 17.6 21.8-3.2 50.8-19.9 59.8-40.3 8.8-20.4 8.8-37.9 6-41.6-2.5-3.8-6.1-5.7-11.6-8.5z"/></svg> 
+               <span data-i18n="footer_wa">Rýchly WhatsApp kontakt</span>
+             </a>
+           </p>
+         </div>
+         <div class="footer-col">
+           <h4 data-i18n="footer_links">Rýchle odkazy</h4>
+-          <a href="#hero" data-i18n="nav_home">Domov</a>
+-          <a href="#produkty" data-i18n="nav_products">Produkty</a>
+-          <a href="#vyhody" data-i18n="nav_why">O nás</a>
++          <a href="#hero" class="footer-link" data-i18n="nav_home">Domov</a>
++          <a href="#produkty" class="footer-link" data-i18n="nav_products">Produkty</a>
++          <a href="#vyhody" class="footer-link" data-i18n="nav_why">O nás</a>
+         </div>
+       </div>
+-      <div class="footer-bottom">
++      <div class="footer-bottom relative-z">
+         <p><span data-i18n="footer_copy">&copy; 2026 REPASit. Všetky práva vyhradené.</span></p>
+       </div>
+     </footer>
+
+commit 2836e3a846a117161c36d665202ad2819ce700ba
+Author: Michal Jagerčík <michal.jagercik@qbiti.cz>
+Date:   Sun Apr 19 22:53:19 2026 +0200
+
+    feat: add WhatsApp contact option to inquiry modal, improve product search with highlighting, and refine UI styling
+
+diff --git a/index.html b/index.html
+index 71a050c..5074d7a 100644
+--- a/index.html
++++ b/index.html
+@@ -174,6 +174,17 @@
+           <h2 class="modal-title" data-i18n="modal_title">Mám záujem</h2>
+           <p class="modal-subtitle" id="modalProductTarget" data-i18n-tpl="modal_tpl">Produkt: <strong>{0}</strong></p>
+           
++          <div class="modal-options">
++            <a href="https://wa.me/420733676752" target="_blank" rel="noopener noreferrer" class="btn btn-wa w-full" id="waContactBtn">
++              <svg width="20" height="20" fill="currentColor" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zM223.9 414.4c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 334.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-2.6-4.5 0-6.9 2.5-9.4 5.1-5 10.8-11.4 15.6-15.5 3-2.6 3.6-5 4.6-8.9 1.4-5.6-1-10.4-3.5-15.3-2.8-5.6-18.4-44.3-24.8-60.6-6-15.7-12-13.6-16.6-14-4-.3-8.8-.3-13.6-.3-4.6 0-12.5 1.9-19.4 9.3s-26.4 25.9-26.4 63 27.3 72.8 31 77.8c3.7 5 53.1 84.7 130.5 116.8 45.4 18.6 63 21 86 17.6 21.8-3.2 50.8-19.9 59.8-40.3 8.8-20.4 8.8-37.9 6-41.6-2.5-3.8-6.1-5.7-11.6-8.5z"/></svg>
++              <span data-i18n="modal_wa">Rýchla správa cez WhatsApp</span>
++            </a>
++            
++            <div class="modal-divider">
++              <span data-i18n="modal_or">alebo použite e-mailový formulár nižšie</span>
++            </div>
++          </div>
++          
+           <form class="contact-form" id="inquiryForm">
+             <div class="form-group">
+               <label for="name" data-i18n="modal_name">Vaše meno</label>
+@@ -184,8 +195,8 @@
+               <input type="email" id="email" name="email" required placeholder="Váš pracovný e-mail" data-i18n-ph="modal_email_ph">
+             </div>
+             <div class="form-group">
+-              <label for="message" data-i18n="modal_msg">Správa (voliteľné)</label>
+-              <textarea id="message" name="message" rows="4" placeholder="Máte špecifickú požiadavku k zariadeniu?" data-i18n-ph="modal_msg_ph"></textarea>
++              <label for="message" data-i18n="modal_msg">Správa</label>
++              <textarea id="message" name="message" rows="4" required placeholder="Máte špecifickú požiadavku k zariadeniu?" data-i18n-ph="modal_msg_ph"></textarea>
+             </div>
+             <button type="submit" class="btn btn-primary w-full" data-i18n="modal_submit">Odoslať dopyt</button>
+           </form>
+
+commit e38db9d5e276fec776322161b672d08bb0501bc0
+Author: Michal Jagerčík <michal.jagercik@qbiti.cz>
+Date:   Sun Apr 12 12:44:54 2026 +0200
+
+    Abbreviate localized gaming category names natively inside UI language dictionaries to improve spatial distribution across filter controls
+
+diff --git a/index.html b/index.html
+index 9671139..71a050c 100644
+--- a/index.html
++++ b/index.html
+@@ -115,7 +115,7 @@
+             <button class="filter-btn" data-filter="server" data-i18n="filter_servers">Servery</button>
+             <button class="filter-btn" data-filter="apple" data-i18n="filter_apple">Apple</button>
+             <button class="filter-btn" data-filter="accessory" data-i18n="filter_accessories">Príslušenstvo</button>
+-            <button class="filter-btn" data-filter="gaming" data-i18n="filter_gaming">Herné PC</button>
++            <button class="filter-btn" data-filter="gaming" data-i18n="filter_gaming">Herné</button>
+           </div>
+           <div class="search-sort">
+             <input type="text" id="productSearch" class="search-input" placeholder="Hľadať produkt..." data-i18n-ph="search_placeholder">
+
+commit c4409c897cb78311b0b1bfe2048a6f1b7c9b4ce3
+Author: Michal Jagerčík <michal.jagercik@qbiti.cz>
+Date:   Sat Apr 11 18:11:57 2026 +0200
+
+    Implement multi-tier Apple filtering category mapping Apple devices to native hardware constraints alongside dedicated Apple UI endpoint
+
+diff --git a/index.html b/index.html
+index ff27c52..9671139 100644
+--- a/index.html
++++ b/index.html
+@@ -113,6 +113,7 @@
+             <button class="filter-btn" data-filter="desktop" data-i18n="filter_desktops">Počítače</button>
+             <button class="filter-btn" data-filter="monitor" data-i18n="filter_monitors">Monitory</button>
+             <button class="filter-btn" data-filter="server" data-i18n="filter_servers">Servery</button>
++            <button class="filter-btn" data-filter="apple" data-i18n="filter_apple">Apple</button>
+             <button class="filter-btn" data-filter="accessory" data-i18n="filter_accessories">Príslušenstvo</button>
+             <button class="filter-btn" data-filter="gaming" data-i18n="filter_gaming">Herné PC</button>
+           </div>
+
+commit 599b3eca32a1bf22beda63ada5a550728e6303f7
+Author: Michal Jagerčík <michal.jagercik@qbiti.cz>
+Date:   Sat Apr 11 18:08:55 2026 +0200
+
+    Implement Server category filter matching dataset labels natively across UI controls and JS routing matrix
+
+diff --git a/index.html b/index.html
+index 0a28c0c..ff27c52 100644
+--- a/index.html
++++ b/index.html
+@@ -112,6 +112,7 @@
+             <button class="filter-btn" data-filter="laptop" data-i18n="filter_laptops">Notebooky</button>
+             <button class="filter-btn" data-filter="desktop" data-i18n="filter_desktops">Počítače</button>
+             <button class="filter-btn" data-filter="monitor" data-i18n="filter_monitors">Monitory</button>
++            <button class="filter-btn" data-filter="server" data-i18n="filter_servers">Servery</button>
+             <button class="filter-btn" data-filter="accessory" data-i18n="filter_accessories">Príslušenstvo</button>
+             <button class="filter-btn" data-filter="gaming" data-i18n="filter_gaming">Herné PC</button>
+           </div>
+
+commit d8b0414ee492de6f86809ab4752b35a8453fb09b
+Author: Michal Jagerčík <michal.jagercik@qbiti.cz>
+Date:   Thu Apr 9 11:32:53 2026 +0200
+
+    Bind localized translation dictionary variables to WhatsApp footer contact element
+
+diff --git a/index.html b/index.html
+index b8fe49f..0a28c0c 100644
+--- a/index.html
++++ b/index.html
+@@ -148,7 +148,7 @@
+           <p style="margin-top: 15px;">
+             <a href="https://wa.me/420733676752" target="_blank" rel="noopener noreferrer" style="color:#25d366; display:inline-flex; align-items:center; gap:8px; font-weight:500;">
+               <svg style="width:18px;height:18px;fill:currentColor;" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zM223.9 414.4c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 334.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-2.6-4.5 0-6.9 2.5-9.4 5.1-5 10.8-11.4 15.6-15.5 3-2.6 3.6-5 4.6-8.9 1.4-5.6-1-10.4-3.5-15.3-2.8-5.6-18.4-44.3-24.8-60.6-6-15.7-12-13.6-16.6-14-4-.3-8.8-.3-13.6-.3-4.6 0-12.5 1.9-19.4 9.3s-26.4 25.9-26.4 63 27.3 72.8 31 77.8c3.7 5 53.1 84.7 130.5 116.8 45.4 18.6 63 21 86 17.6 21.8-3.2 50.8-19.9 59.8-40.3 8.8-20.4 8.8-37.9 6-41.6-2.5-3.8-6.1-5.7-11.6-8.5z"/></svg> 
+-              Rýchly WhatsApp kontakt
++              <span data-i18n="footer_wa">Rýchly WhatsApp kontakt</span>
+             </a>
+           </p>
+         </div>
+
+commit cc6af2919e9601b336833957128016acef198631
+Author: Michal Jagerčík <michal.jagercik@qbiti.cz>
+Date:   Tue Apr 7 10:06:44 2026 +0200
+
+    Reintroduce Monitor category filter button to the UI layout which was inadvertently erased during previous search input refactoring
+
+diff --git a/index.html b/index.html
+index a661678..b8fe49f 100644
+--- a/index.html
++++ b/index.html
+@@ -111,6 +111,7 @@
+             <button class="filter-btn active" data-filter="all" data-i18n="filter_all">Všetko</button>
+             <button class="filter-btn" data-filter="laptop" data-i18n="filter_laptops">Notebooky</button>
+             <button class="filter-btn" data-filter="desktop" data-i18n="filter_desktops">Počítače</button>
++            <button class="filter-btn" data-filter="monitor" data-i18n="filter_monitors">Monitory</button>
+             <button class="filter-btn" data-filter="accessory" data-i18n="filter_accessories">Príslušenstvo</button>
+             <button class="filter-btn" data-filter="gaming" data-i18n="filter_gaming">Herné PC</button>
+           </div>
+
+commit 3245e72d74845916d35c881c06f4476528ddc80f
+Author: Michal Jagerčík <michal.jagercik@qbiti.cz>
+Date:   Tue Apr 7 09:02:52 2026 +0200
+
+    Fix category matching logic: restore laptop keyword mapping for Notebooks filter and include Gaming PCs inside Desktops filter natively
+
+diff --git a/index.html b/index.html
+index 8e3935e..a661678 100644
+--- a/index.html
++++ b/index.html
+@@ -109,7 +109,7 @@
+         <div class="products-controls">
+           <div class="filters">
+             <button class="filter-btn active" data-filter="all" data-i18n="filter_all">Všetko</button>
+-            <button class="filter-btn" data-filter="notebook" data-i18n="filter_laptops">Notebooky</button>
++            <button class="filter-btn" data-filter="laptop" data-i18n="filter_laptops">Notebooky</button>
+             <button class="filter-btn" data-filter="desktop" data-i18n="filter_desktops">Počítače</button>
+             <button class="filter-btn" data-filter="accessory" data-i18n="filter_accessories">Príslušenstvo</button>
+             <button class="filter-btn" data-filter="gaming" data-i18n="filter_gaming">Herné PC</button>
+
+commit 4a8dfccd0174c97ca02966cdaa3c6eca9e66f2c5
+Author: Michal Jagerčík <michal.jagercik@qbiti.cz>
+Date:   Tue Apr 7 09:00:01 2026 +0200
+
+    Update WhatsApp navigation link text semantics inside footer
+
+diff --git a/index.html b/index.html
+index 6929837..8e3935e 100644
+--- a/index.html
++++ b/index.html
+@@ -147,7 +147,7 @@
+           <p style="margin-top: 15px;">
+             <a href="https://wa.me/420733676752" target="_blank" rel="noopener noreferrer" style="color:#25d366; display:inline-flex; align-items:center; gap:8px; font-weight:500;">
+               <svg style="width:18px;height:18px;fill:currentColor;" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zM223.9 414.4c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 334.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-2.6-4.5 0-6.9 2.5-9.4 5.1-5 10.8-11.4 15.6-15.5 3-2.6 3.6-5 4.6-8.9 1.4-5.6-1-10.4-3.5-15.3-2.8-5.6-18.4-44.3-24.8-60.6-6-15.7-12-13.6-16.6-14-4-.3-8.8-.3-13.6-.3-4.6 0-12.5 1.9-19.4 9.3s-26.4 25.9-26.4 63 27.3 72.8 31 77.8c3.7 5 53.1 84.7 130.5 116.8 45.4 18.6 63 21 86 17.6 21.8-3.2 50.8-19.9 59.8-40.3 8.8-20.4 8.8-37.9 6-41.6-2.5-3.8-6.1-5.7-11.6-8.5z"/></svg> 
+-              WhatsApp podpora
++              Rýchly WhatsApp kontakt
+             </a>
+           </p>
+         </div>
+
+commit 631639061816a1c136a9eb5090263a3e947c8b7b
+Author: Michal Jagerčík <michal.jagercik@qbiti.cz>
+Date:   Mon Apr 6 23:52:08 2026 +0200
+
+    Elegantly integrate WhatsApp quick-link directly into standard Footer columns
+
+diff --git a/index.html b/index.html
+index 57da2db..6929837 100644
+--- a/index.html
++++ b/index.html
+@@ -144,6 +144,12 @@
+           <h4 data-i18n="footer_contact">Kontakt</h4>
+           <p><a href="mailto:repasit@qbiti.cz">repasit@qbiti.cz</a></p>
+           <p><a href="tel:+420733676752">+420 733 676 752</a></p>
++          <p style="margin-top: 15px;">
++            <a href="https://wa.me/420733676752" target="_blank" rel="noopener noreferrer" style="color:#25d366; display:inline-flex; align-items:center; gap:8px; font-weight:500;">
++              <svg style="width:18px;height:18px;fill:currentColor;" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zM223.9 414.4c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 334.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-2.6-4.5 0-6.9 2.5-9.4 5.1-5 10.8-11.4 15.6-15.5 3-2.6 3.6-5 4.6-8.9 1.4-5.6-1-10.4-3.5-15.3-2.8-5.6-18.4-44.3-24.8-60.6-6-15.7-12-13.6-16.6-14-4-.3-8.8-.3-13.6-.3-4.6 0-12.5 1.9-19.4 9.3s-26.4 25.9-26.4 63 27.3 72.8 31 77.8c3.7 5 53.1 84.7 130.5 116.8 45.4 18.6 63 21 86 17.6 21.8-3.2 50.8-19.9 59.8-40.3 8.8-20.4 8.8-37.9 6-41.6-2.5-3.8-6.1-5.7-11.6-8.5z"/></svg> 
++              WhatsApp podpora
++            </a>
++          </p>
+         </div>
+         <div class="footer-col">
+           <h4 data-i18n="footer_links">Rýchle odkazy</h4>
+
+commit 569de7a6b73a3f8c2eb574718ce7de2750ab395a
+Author: Michal Jagerčík <michal.jagercik@qbiti.cz>
+Date:   Mon Apr 6 23:49:21 2026 +0200
+
+    Remove disruptive floating WhatsApp layout to retain clean minimalist UI guidelines
+
+diff --git a/index.html b/index.html
+index d04d478..57da2db 100644
+--- a/index.html
++++ b/index.html
+@@ -184,15 +184,7 @@
+              Ďakujeme! Váš dopyt bol úspešne odoslaný. Čoskoro vás budeme kontaktovať.
+           </div>
+         </div>
+-      </div>
+-    </div>
+ 
+-    <!-- WhatsApp Floating Button -->
+-    <a href="https://wa.me/420733676752" class="whatsapp-float" target="_blank" aria-label="Kontaktujte nás na WhatsApp" rel="noopener noreferrer">
+-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor">
+-        <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zM223.9 414.4c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 334.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-2.6-4.5 0-6.9 2.5-9.4 5.1-5 10.8-11.4 15.6-15.5 3-2.6 3.6-5 4.6-8.9 1.4-5.6-1-10.4-3.5-15.3-2.8-5.6-18.4-44.3-24.8-60.6-6-15.7-12-13.6-16.6-14-4-.3-8.8-.3-13.6-.3-4.6 0-12.5 1.9-19.4 9.3s-26.4 25.9-26.4 63 27.3 72.8 31 77.8c3.7 5 53.1 84.7 130.5 116.8 45.4 18.6 63 21 86 17.6 21.8-3.2 50.8-19.9 59.8-40.3 8.8-20.4 8.8-37.9 6-41.6-2.5-3.8-6.1-5.7-11.6-8.5z"/>
+-      </svg>
+-    </a>
+ 
+     <script type="module" src="/main.js"></script>
+   </body>
+
+commit ee065b1291031810ccce11deffd6a5f157bec6db
+Author: Michal Jagerčík <michal.jagercik@qbiti.cz>
+Date:   Mon Apr 6 23:45:16 2026 +0200
+
+    Fix syntax error causing WhatsApp HTML button injection to abort during previous multi_replace call
+
+diff --git a/index.html b/index.html
+index 9a02ba8..d04d478 100644
+--- a/index.html
++++ b/index.html
+@@ -187,6 +187,13 @@
+       </div>
+     </div>
+ 
++    <!-- WhatsApp Floating Button -->
++    <a href="https://wa.me/420733676752" class="whatsapp-float" target="_blank" aria-label="Kontaktujte nás na WhatsApp" rel="noopener noreferrer">
++      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor">
++        <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zM223.9 414.4c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 334.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-2.6-4.5 0-6.9 2.5-9.4 5.1-5 10.8-11.4 15.6-15.5 3-2.6 3.6-5 4.6-8.9 1.4-5.6-1-10.4-3.5-15.3-2.8-5.6-18.4-44.3-24.8-60.6-6-15.7-12-13.6-16.6-14-4-.3-8.8-.3-13.6-.3-4.6 0-12.5 1.9-19.4 9.3s-26.4 25.9-26.4 63 27.3 72.8 31 77.8c3.7 5 53.1 84.7 130.5 116.8 45.4 18.6 63 21 86 17.6 21.8-3.2 50.8-19.9 59.8-40.3 8.8-20.4 8.8-37.9 6-41.6-2.5-3.8-6.1-5.7-11.6-8.5z"/>
++      </svg>
++    </a>
++
+     <script type="module" src="/main.js"></script>
+   </body>
+ </html>
+
+commit bff1661a074daaf2a455cc120b50202a1b786cb3
+Author: Michal Jagerčík <michal.jagercik@qbiti.cz>
+Date:   Mon Apr 6 23:41:48 2026 +0200
+
+    Remove obsolete alphabetical sorting interface & Implement dedicated floating WhatsApp quick-contact widget
+
+diff --git a/index.html b/index.html
+index 573338b..9a02ba8 100644
+--- a/index.html
++++ b/index.html
+@@ -116,11 +116,6 @@
+           </div>
+           <div class="search-sort">
+             <input type="text" id="productSearch" class="search-input" placeholder="Hľadať produkt..." data-i18n-ph="search_placeholder">
+-            <select id="productSort" class="sort-select">
+-              <option value="default" data-i18n="sort_default">Základné</option>
+-              <option value="az" data-i18n="sort_az">Názov: Od A po Z</option>
+-              <option value="za" data-i18n="sort_za">Názov: Od Z po A</option>
+-            </select>
+           </div>
+         </div>
+ 
+
+commit 56cd9d41626f7ba44b2eb3e0468e7d446404f1ae
+Author: Michal Jagerčík <michal.jagercik@qbiti.cz>
+Date:   Mon Apr 6 23:30:51 2026 +0200
+
+    Implement advanced instant Search & Sort logic paired with CSS Skeleton component loading states
+
+diff --git a/index.html b/index.html
+index 476d27f..573338b 100644
+--- a/index.html
++++ b/index.html
+@@ -106,24 +106,35 @@
+           <p class="section-subtitle" data-i18n="prod_subtitle">Exkluzívny výber najlepších zariadení pripravených na okamžité použitie.</p>
+         </div>
+         
+-        <!-- Filters could be added here -->
+-        <div class="products-filters" id="filters">
++        <div class="products-controls">
++          <div class="filters">
+             <button class="filter-btn active" data-filter="all" data-i18n="filter_all">Všetko</button>
+-            <button class="filter-btn" data-filter="laptop" data-i18n="filter_laptops">Notebooky</button>
+-            <button class="filter-btn" data-filter="desktop" data-i18n="filter_desktops">Stolné PC</button>
+-            <button class="filter-btn" data-filter="monitor" data-i18n="filter_monitors">Monitory</button>
++            <button class="filter-btn" data-filter="notebook" data-i18n="filter_laptops">Notebooky</button>
++            <button class="filter-btn" data-filter="desktop" data-i18n="filter_desktops">Počítače</button>
+             <button class="filter-btn" data-filter="accessory" data-i18n="filter_accessories">Príslušenstvo</button>
+             <button class="filter-btn" data-filter="gaming" data-i18n="filter_gaming">Herné PC</button>
++          </div>
++          <div class="search-sort">
++            <input type="text" id="productSearch" class="search-input" placeholder="Hľadať produkt..." data-i18n-ph="search_placeholder">
++            <select id="productSort" class="sort-select">
++              <option value="default" data-i18n="sort_default">Základné</option>
++              <option value="az" data-i18n="sort_az">Názov: Od A po Z</option>
++              <option value="za" data-i18n="sort_za">Názov: Od Z po A</option>
++            </select>
++          </div>
+         </div>
+ 
+         <div class="products-grid" id="productsGrid">
++          <article class="product-card skeleton-card"><div class="skeleton-img"></div><div class="product-content"><div class="skeleton-text short"></div><div class="skeleton-text medium"></div><div class="skeleton-text full"></div></div></article>
++          <article class="product-card skeleton-card"><div class="skeleton-img"></div><div class="product-content"><div class="skeleton-text short"></div><div class="skeleton-text medium"></div><div class="skeleton-text full"></div></div></article>
++          <article class="product-card skeleton-card"><div class="skeleton-img"></div><div class="product-content"><div class="skeleton-text short"></div><div class="skeleton-text medium"></div><div class="skeleton-text full"></div></div></article>
++          <article class="product-card skeleton-card"><div class="skeleton-img"></div><div class="product-content"><div class="skeleton-text short"></div><div class="skeleton-text medium"></div><div class="skeleton-text full"></div></div></article>
+           <!-- Products will be injected via JS -->
+         </div>
+       </div>
+     </section>
+ 
+ 
+-
+     <!-- Footer -->
+     <footer class="footer" id="kontakt">
+       <div class="footer-container">
+
+commit dce453c74f2b18d842accb875307a15538ffa1ed
+Author: Michal Jagerčík <michal.jagercik@qbiti.cz>
+Date:   Mon Apr 6 23:09:22 2026 +0200
+
+    Revert "Completely remove experimental animated Mesh Gradient from Hero background; retaining only Parallax effect"
+    
+    This reverts commit 7cb8d5e121e18d9dc06ee75b2dedd572de75018b.
+
+diff --git a/index.html b/index.html
+index cedd642..476d27f 100644
+--- a/index.html
++++ b/index.html
+@@ -44,6 +44,7 @@
+ 
+     <!-- Hero Section -->
+     <header class="hero" id="hero">
++      <div class="mesh-bg"></div>
+       <div class="hero-content">
+         <div class="badge fade-in-up" data-i18n="hero_badge">Nová dimenzia IT vybavenia</div>
+         <h1 class="hero-title fade-in-up" style="animation-delay: 0.1s">
+
+commit 7cb8d5e121e18d9dc06ee75b2dedd572de75018b
+Author: Michal Jagerčík <michal.jagercik@qbiti.cz>
+Date:   Mon Apr 6 23:08:25 2026 +0200
+
+    Completely remove experimental animated Mesh Gradient from Hero background; retaining only Parallax effect
+
+diff --git a/index.html b/index.html
+index 476d27f..cedd642 100644
+--- a/index.html
++++ b/index.html
+@@ -44,7 +44,6 @@
+ 
+     <!-- Hero Section -->
+     <header class="hero" id="hero">
+-      <div class="mesh-bg"></div>
+       <div class="hero-content">
+         <div class="badge fade-in-up" data-i18n="hero_badge">Nová dimenzia IT vybavenia</div>
+         <h1 class="hero-title fade-in-up" style="animation-delay: 0.1s">
+
+commit 91adef81ca76cf13b504dfb269c5ffb7d14edb74
+Author: Michal Jagerčík <michal.jagercik@qbiti.cz>
+Date:   Mon Apr 6 22:52:13 2026 +0200
+
+    Permanently restore standard OS pointer logic by fully excising custom cursor scripts and HTML
+
+diff --git a/index.html b/index.html
+index ec80b81..476d27f 100644
+--- a/index.html
++++ b/index.html
+@@ -13,9 +13,6 @@
+     <link rel="stylesheet" href="/style.css" />
+   </head>
+   <body>
+-    <!-- Premium Enhancements: Cursor -->
+-    <div id="custom-cursor"></div>
+-    <div id="custom-cursor-follower"></div>
+     <!-- Navbar -->
+     <nav class="navbar" id="navbar">
+       <div class="nav-container">
+
+commit 603cbd76ec30f46a95886ba821b6bd6b8d11e62c
+Author: Michal Jagerčík <michal.jagercik@qbiti.cz>
+Date:   Mon Apr 6 22:41:33 2026 +0200
+
+    Implement visible DOM-based Mesh Gradient hero background
+
+diff --git a/index.html b/index.html
+index 0657a02..ec80b81 100644
+--- a/index.html
++++ b/index.html
+@@ -47,6 +47,7 @@
+ 
+     <!-- Hero Section -->
+     <header class="hero" id="hero">
++      <div class="mesh-bg"></div>
+       <div class="hero-content">
+         <div class="badge fade-in-up" data-i18n="hero_badge">Nová dimenzia IT vybavenia</div>
+         <h1 class="hero-title fade-in-up" style="animation-delay: 0.1s">
+
+commit a1a8bd1670906af6231fc299fef38dacf37b5c43
+Author: Michal Jagerčík <michal.jagercik@qbiti.cz>
+Date:   Mon Apr 6 22:34:57 2026 +0200
+
+    Completely remove orphaned Marquee HTML and restore Custom Cursor with high-contrast mix-blend-mode logic
+
+diff --git a/index.html b/index.html
+index b1615f0..0657a02 100644
+--- a/index.html
++++ b/index.html
+@@ -100,16 +100,6 @@
+ 
+     </section>
+ 
+-    <!-- Marquee Banner -->
+-    <section class="marquee-section">
+-      <div class="marquee-container">
+-        <div class="marquee-track">
+-          <span data-i18n="marquee_text">★ 100% GARANCIA KVALITY ★ PREVERENÝ REPAS ★ EKO-LOGICKÁ VOĽBA ★ PROFESIONÁLNE IT ★ OKAMŽITÉ DODANIE</span>
+-          <span data-i18n="marquee_text">★ 100% GARANCIA KVALITY ★ PREVERENÝ REPAS ★ EKO-LOGICKÁ VOĽBA ★ PROFESIONÁLNE IT ★ OKAMŽITÉ DODANIE</span>
+-        </div>
+-      </div>
+-    </section>
+-
+     <!-- Products Showcase -->
+     <section class="section products-section" id="produkty">
+       <div class="section-container">
+
+commit 903426fcc29e30a0293ea7ece5314a30f82c03f0
+Author: Michal Jagerčík <michal.jagercik@qbiti.cz>
+Date:   Mon Apr 6 22:24:29 2026 +0200
+
+    Implement 5 premium frontend aesthetics (Mesh gradient, Parallax scrolling, Marquee banners, Custom Cursor mapping and 3D VanillaTilt product cards)
+
+diff --git a/index.html b/index.html
+index 5b81b4e..b1615f0 100644
+--- a/index.html
++++ b/index.html
+@@ -13,6 +13,9 @@
+     <link rel="stylesheet" href="/style.css" />
+   </head>
+   <body>
++    <!-- Premium Enhancements: Cursor -->
++    <div id="custom-cursor"></div>
++    <div id="custom-cursor-follower"></div>
+     <!-- Navbar -->
+     <nav class="navbar" id="navbar">
+       <div class="nav-container">
+@@ -95,6 +98,18 @@
+       </div>
+     </section>
+ 
++    </section>
++
++    <!-- Marquee Banner -->
++    <section class="marquee-section">
++      <div class="marquee-container">
++        <div class="marquee-track">
++          <span data-i18n="marquee_text">★ 100% GARANCIA KVALITY ★ PREVERENÝ REPAS ★ EKO-LOGICKÁ VOĽBA ★ PROFESIONÁLNE IT ★ OKAMŽITÉ DODANIE</span>
++          <span data-i18n="marquee_text">★ 100% GARANCIA KVALITY ★ PREVERENÝ REPAS ★ EKO-LOGICKÁ VOĽBA ★ PROFESIONÁLNE IT ★ OKAMŽITÉ DODANIE</span>
++        </div>
++      </div>
++    </section>
++
+     <!-- Products Showcase -->
+     <section class="section products-section" id="produkty">
+       <div class="section-container">
+
+commit e6d23711d9445d5b28a6a4ee6007528444b1fdc8
+Author: Michal Jagerčík <michal.jagercik@qbiti.cz>
+Date:   Mon Apr 6 15:01:32 2026 +0200
+
+    Introduce dedicated Gaming categorization and UI filter feature
+
+diff --git a/index.html b/index.html
+index da8f335..5b81b4e 100644
+--- a/index.html
++++ b/index.html
+@@ -110,6 +110,7 @@
+             <button class="filter-btn" data-filter="desktop" data-i18n="filter_desktops">Stolné PC</button>
+             <button class="filter-btn" data-filter="monitor" data-i18n="filter_monitors">Monitory</button>
+             <button class="filter-btn" data-filter="accessory" data-i18n="filter_accessories">Príslušenstvo</button>
++            <button class="filter-btn" data-filter="gaming" data-i18n="filter_gaming">Herné PC</button>
+         </div>
+ 
+         <div class="products-grid" id="productsGrid">
+
+commit fd836b66b1f4b131ce0bdc1838b220b9247da870
+Author: Michal Jagerčík <michal.jagercik@qbiti.cz>
+Date:   Sun Apr 5 22:20:43 2026 +0200
+
+    Fix footer contact header margin by switching back to h4
+
+diff --git a/index.html b/index.html
+index e2fdc10..da8f335 100644
+--- a/index.html
++++ b/index.html
+@@ -131,7 +131,7 @@
+           <p class="footer-text" data-i18n="footer_desc">Prémiová repasovaná technika pre tých, ktorí hľadajú kvalitu za rozumnú cenu.</p>
+         </div>
+         <div class="footer-col">
+-          <h3 data-i18n="footer_contact">Kontakt</h3>
++          <h4 data-i18n="footer_contact">Kontakt</h4>
+           <p><a href="mailto:repasit@qbiti.cz">repasit@qbiti.cz</a></p>
+           <p><a href="tel:+420733676752">+420 733 676 752</a></p>
+         </div>
+
+commit 30b3152808858abafcbc97e099cdbc80440a4969
+Author: Michal Jagerčík <michal.jagercik@qbiti.cz>
+Date:   Sun Apr 5 22:14:46 2026 +0200
+
+    Update products subtitle text and footer contact information
+
+diff --git a/index.html b/index.html
+index 093b458..e2fdc10 100644
+--- a/index.html
++++ b/index.html
+@@ -131,9 +131,9 @@
+           <p class="footer-text" data-i18n="footer_desc">Prémiová repasovaná technika pre tých, ktorí hľadajú kvalitu za rozumnú cenu.</p>
+         </div>
+         <div class="footer-col">
+-          <h4 data-i18n="footer_contact">Kontakt</h4>
+-          <p>Email: info@repasit.sk</p>
+-          <p>Tel: +421 900 123 456</p>
++          <h3 data-i18n="footer_contact">Kontakt</h3>
++          <p><a href="mailto:repasit@qbiti.cz">repasit@qbiti.cz</a></p>
++          <p><a href="tel:+420733676752">+420 733 676 752</a></p>
+         </div>
+         <div class="footer-col">
+           <h4 data-i18n="footer_links">Rýchle odkazy</h4>
+
+commit 718d1e326f3ec0942be14547cf51e6bb0567eabd
+Author: Michal Jagerčík <michal.jagercik@qbiti.cz>
+Date:   Sun Apr 5 22:07:19 2026 +0200
+
+    Set CZ as default language and implement strict daytime Light Theme logic
+
+diff --git a/index.html b/index.html
+index a566d79..093b458 100644
+--- a/index.html
++++ b/index.html
+@@ -28,8 +28,8 @@
+         <div class="nav-actions">
+           <div class="lang-switcher">
+             <select id="langSelect" aria-label="Zmeniť jazyk">
++              <option value="cz" selected>CZ</option>
+               <option value="sk">SK</option>
+-              <option value="cz">CZ</option>
+               <option value="en">EN</option>
+             </select>
+           </div>
+
+commit d784262a9bdf247c0bc8c6ea53f3d2b326f16b71
+Author: Michal Jagerčík <michal.jagercik@qbiti.cz>
+Date:   Sun Apr 5 21:50:56 2026 +0200
+
+    Remove personal contact container per user request
+
+diff --git a/index.html b/index.html
+index 26d356d..a566d79 100644
+--- a/index.html
++++ b/index.html
+@@ -118,28 +118,7 @@
+       </div>
+     </section>
+ 
+-    <!-- Personal Contact Section -->
+-    <section id="kontakt" class="personal-contact">
+-      <div class="container">
+-        <div class="contact-card glass-panel">
+-          <div class="contact-image">
+-            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400&h=400" alt="Michal Jagerčík" id="founder-photo">
+-          </div>
+-          <div class="contact-info">
+-            <h2 data-i18n="contact_title">Váš osobný IT partner</h2>
+-            <p data-i18n="contact_text">Nekupujete mačku vo vreci. Za každým jedným zariadením stojím osobne – od jeho výberu, cez testy až po dodanie. Som tu pre vás aj po nákupe, pripravený poradiť s výberom pre váš biznis či domácnosť.</p>
+-            <div class="contact-person">
+-              <strong>Michal Jagerčík</strong>
+-              <span data-i18n="contact_role">Zakladateľ QBITI & REPASit</span>
+-            </div>
+-            <div class="contact-actions flex gap-4 mt-6">
+-               <a href="mailto:michal.jagercik@qbiti.cz" class="btn btn-primary" data-i18n="contact_mail">Napísať e-mail</a>
+-               <a href="tel:+420733676752" class="btn btn-outline" data-i18n="contact_call">Zavolať mi</a>
+-            </div>
+-          </div>
+-        </div>
+-      </div>
+-    </section>
++
+ 
+     <!-- Footer -->
+     <footer class="footer" id="kontakt">
+
+commit 103dc516315aee16121ec85003758477d39d3666
+Author: Michal Jagerčík <michal.jagercik@qbiti.cz>
+Date:   Sun Apr 5 21:49:38 2026 +0200
+
+    Add personal contact section and restrict custom image query strictly to LYNX
+
+diff --git a/index.html b/index.html
+index 5b927ad..26d356d 100644
+--- a/index.html
++++ b/index.html
+@@ -118,6 +118,29 @@
+       </div>
+     </section>
+ 
++    <!-- Personal Contact Section -->
++    <section id="kontakt" class="personal-contact">
++      <div class="container">
++        <div class="contact-card glass-panel">
++          <div class="contact-image">
++            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400&h=400" alt="Michal Jagerčík" id="founder-photo">
++          </div>
++          <div class="contact-info">
++            <h2 data-i18n="contact_title">Váš osobný IT partner</h2>
++            <p data-i18n="contact_text">Nekupujete mačku vo vreci. Za každým jedným zariadením stojím osobne – od jeho výberu, cez testy až po dodanie. Som tu pre vás aj po nákupe, pripravený poradiť s výberom pre váš biznis či domácnosť.</p>
++            <div class="contact-person">
++              <strong>Michal Jagerčík</strong>
++              <span data-i18n="contact_role">Zakladateľ QBITI & REPASit</span>
++            </div>
++            <div class="contact-actions flex gap-4 mt-6">
++               <a href="mailto:michal.jagercik@qbiti.cz" class="btn btn-primary" data-i18n="contact_mail">Napísať e-mail</a>
++               <a href="tel:+420733676752" class="btn btn-outline" data-i18n="contact_call">Zavolať mi</a>
++            </div>
++          </div>
++        </div>
++      </div>
++    </section>
++
+     <!-- Footer -->
+     <footer class="footer" id="kontakt">
+       <div class="footer-container">
+
+commit 5944a09757f65ff12c0342450b50fcc78e968903
+Author: Michal Jagerčík <michal.jagercik@qbiti.cz>
+Date:   Sun Apr 5 20:33:53 2026 +0200
+
+    Implement Web3Forms contact submission logic
+
+diff --git a/index.html b/index.html
+index f39fecc..5b927ad 100644
+--- a/index.html
++++ b/index.html
+@@ -156,15 +156,15 @@
+           <form class="contact-form" id="inquiryForm">
+             <div class="form-group">
+               <label for="name" data-i18n="modal_name">Vaše meno</label>
+-              <input type="text" id="name" required placeholder="Napr. Ján Novák" data-i18n-ph="modal_name_ph">
++              <input type="text" id="name" name="name" required placeholder="Napr. Ján Novák" data-i18n-ph="modal_name_ph">
+             </div>
+             <div class="form-group">
+               <label for="email" data-i18n="modal_email">E-mail</label>
+-              <input type="email" id="email" required placeholder="Váš pracovný e-mail" data-i18n-ph="modal_email_ph">
++              <input type="email" id="email" name="email" required placeholder="Váš pracovný e-mail" data-i18n-ph="modal_email_ph">
+             </div>
+             <div class="form-group">
+               <label for="message" data-i18n="modal_msg">Správa (voliteľné)</label>
+-              <textarea id="message" rows="4" placeholder="Máte špecifickú požiadavku k zariadeniu?" data-i18n-ph="modal_msg_ph"></textarea>
++              <textarea id="message" name="message" rows="4" placeholder="Máte špecifickú požiadavku k zariadeniu?" data-i18n-ph="modal_msg_ph"></textarea>
+             </div>
+             <button type="submit" class="btn btn-primary w-full" data-i18n="modal_submit">Odoslať dopyt</button>
+           </form>
+
+commit e6caadd5be0b42431cefacacf1d590ad4c16e733
+Author: Michal Jagerčík <air@MacBook-Pro-uzivatela-Michal.local>
+Date:   Sat Apr 4 08:56:50 2026 +0200
+
+    first commit
+
+diff --git a/index.html b/index.html
+new file mode 100644
+index 0000000..f39fecc
+--- /dev/null
++++ b/index.html
+@@ -0,0 +1,180 @@
++<!DOCTYPE html>
++<html lang="sk">
++  <head>
++    <meta charset="UTF-8" />
++    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
++    <meta name="description" content="Katalóg prémiovej repasovanej IT techniky. Garancia kvality, výborné ceny a spoľahlivý servis." />
++    <title data-i18n="head_title">REPASit | Prémiová technika</title>
++    <link rel="preconnect" href="https://fonts.googleapis.com">
++    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
++    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
++    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700&display=swap" rel="stylesheet">
++    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
++    <link rel="stylesheet" href="/style.css" />
++  </head>
++  <body>
++    <!-- Navbar -->
++    <nav class="navbar" id="navbar">
++      <div class="nav-container">
++        <a href="#" class="logo-group">
++          <span class="logo">REPAS<span class="accent">it</span></span>
++          <span class="sub-logo">by QBITI</span>
++        </a>
++        <div class="nav-links">
++          <a href="#hero" data-i18n="nav_home">Domov</a>
++          <a href="#vyhody" data-i18n="nav_why">Prečo my</a>
++          <a href="#produkty" data-i18n="nav_products">Produkty</a>
++        </div>
++        <div class="nav-actions">
++          <div class="lang-switcher">
++            <select id="langSelect" aria-label="Zmeniť jazyk">
++              <option value="sk">SK</option>
++              <option value="cz">CZ</option>
++              <option value="en">EN</option>
++            </select>
++          </div>
++          <button id="themeToggle" class="btn-icon" aria-label="Prepnúť tému">
++            <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
++            <svg class="icon-sun hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
++          </button>
++          <a href="#kontakt" class="btn btn-outline nav-btn" data-i18n="nav_contact">Kontakt</a>
++        </div>
++      </div>
++    </nav>
++
++    <!-- Hero Section -->
++    <header class="hero" id="hero">
++      <div class="hero-content">
++        <div class="badge fade-in-up" data-i18n="hero_badge">Nová dimenzia IT vybavenia</div>
++        <h1 class="hero-title fade-in-up" style="animation-delay: 0.1s">
++          <span data-i18n="hero_title_1">Prémiová repasovaná</span><br/>
++          <span class="gradient-text" data-i18n="hero_title_2">IT technika.</span>
++        </h1>
++        <p class="hero-subtitle fade-in-up" style="animation-delay: 0.2s" data-i18n="hero_subtitle">
++          Vysoký výkon a spoľahlivosť bez kompromisov. Starostlivo vybrané a testované zariadenia pre vašu firmu aj domov.
++        </p>
++        <div class="hero-actions fade-in-up" style="animation-delay: 0.3s">
++          <a href="#produkty" class="btn btn-primary" data-i18n="hero_btn_1">Pozrieť ponuku</a>
++          <a href="#vyhody" class="btn btn-secondary" data-i18n="hero_btn_2">Zistiť viac</a>
++        </div>
++      </div>
++      <div class="hero-visual fade-in" style="animation-delay: 0.5s">
++        <!-- Abstract glowing orb or sleek laptop mockup -->
++        <div class="glow-orb"></div>
++        <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&q=80&w=1000" alt="Sleek laptop" class="hero-image" />
++      </div>
++    </header>
++
++    <!-- Value Proposition -->
++    <section class="section features" id="vyhody">
++      <div class="section-container">
++        <h2 class="section-title text-center" data-i18n="feat_title">Prečo repasovaná technika?</h2>
++        <div class="features-grid">
++          <div class="feature-card">
++            <div class="feature-icon">
++              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
++            </div>
++            <h3 data-i18n="feat_1_title">100% Garancia</h3>
++            <p data-i18n="feat_1_desc">Každé zariadenie prechádza náročným testovaním. Ručíme za bezchybný stav.</p>
++          </div>
++          <div class="feature-card">
++            <div class="feature-icon">
++              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18"/><path d="M3 6h18"/><path d="M3 18h18"/></svg>
++            </div>
++            <h3 data-i18n="feat_2_title">Vysoký výkon</h3>
++            <p data-i18n="feat_2_desc">Prémiové modely (Pro/Enterprise) s výborným výpočtovým výkonom a konštrukciou.</p>
++          </div>
++          <div class="feature-card">
++            <div class="feature-icon">
++              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2A10 10 0 1 0 22 12 10 10 0 0 0 12 2h0Z"/><path d="M12 8v4l3 3"/></svg>
++            </div>
++            <h3 data-i18n="feat_3_title">Udržateľnosť</h3>
++            <p data-i18n="feat_3_desc">Šetríte peniaze a zároveň pomáhate znižovať množstvo elektroodpadu.</p>
++          </div>
++        </div>
++      </div>
++    </section>
++
++    <!-- Products Showcase -->
++    <section class="section products-section" id="produkty">
++      <div class="section-container">
++        <div class="section-header">
++          <h2 class="section-title" data-i18n="prod_title">Aktuálna ponuka</h2>
++          <p class="section-subtitle" data-i18n="prod_subtitle">Exkluzívny výber najlepších zariadení pripravených na okamžité použitie.</p>
++        </div>
++        
++        <!-- Filters could be added here -->
++        <div class="products-filters" id="filters">
++            <button class="filter-btn active" data-filter="all" data-i18n="filter_all">Všetko</button>
++            <button class="filter-btn" data-filter="laptop" data-i18n="filter_laptops">Notebooky</button>
++            <button class="filter-btn" data-filter="desktop" data-i18n="filter_desktops">Stolné PC</button>
++            <button class="filter-btn" data-filter="monitor" data-i18n="filter_monitors">Monitory</button>
++            <button class="filter-btn" data-filter="accessory" data-i18n="filter_accessories">Príslušenstvo</button>
++        </div>
++
++        <div class="products-grid" id="productsGrid">
++          <!-- Products will be injected via JS -->
++        </div>
++      </div>
++    </section>
++
++    <!-- Footer -->
++    <footer class="footer" id="kontakt">
++      <div class="footer-container">
++        <div class="footer-col">
++          <div class="footer-logo-group">
++            <h3 class="footer-logo">REPAS<span class="accent">it</span></h3>
++            <span class="sub-logo">by QBITI</span>
++          </div>
++          <p class="footer-text" data-i18n="footer_desc">Prémiová repasovaná technika pre tých, ktorí hľadajú kvalitu za rozumnú cenu.</p>
++        </div>
++        <div class="footer-col">
++          <h4 data-i18n="footer_contact">Kontakt</h4>
++          <p>Email: info@repasit.sk</p>
++          <p>Tel: +421 900 123 456</p>
++        </div>
++        <div class="footer-col">
++          <h4 data-i18n="footer_links">Rýchle odkazy</h4>
++          <a href="#hero" data-i18n="nav_home">Domov</a>
++          <a href="#produkty" data-i18n="nav_products">Produkty</a>
++          <a href="#vyhody" data-i18n="nav_why">O nás</a>
++        </div>
++      </div>
++      <div class="footer-bottom">
++        <p><span data-i18n="footer_copy">&copy; 2026 REPASit. Všetky práva vyhradené.</span></p>
++      </div>
++    </footer>
++
++    <!-- Contact Modal -->
++    <div class="modal-overlay" id="contactModal">
++      <div class="modal">
++        <button class="modal-close" id="closeModal">&times;</button>
++        <div class="modal-content">
++          <h2 class="modal-title" data-i18n="modal_title">Mám záujem</h2>
++          <p class="modal-subtitle" id="modalProductTarget" data-i18n-tpl="modal_tpl">Produkt: <strong>{0}</strong></p>
++          
++          <form class="contact-form" id="inquiryForm">
++            <div class="form-group">
++              <label for="name" data-i18n="modal_name">Vaše meno</label>
++              <input type="text" id="name" required placeholder="Napr. Ján Novák" data-i18n-ph="modal_name_ph">
++            </div>
++            <div class="form-group">
++              <label for="email" data-i18n="modal_email">E-mail</label>
++              <input type="email" id="email" required placeholder="Váš pracovný e-mail" data-i18n-ph="modal_email_ph">
++            </div>
++            <div class="form-group">
++              <label for="message" data-i18n="modal_msg">Správa (voliteľné)</label>
++              <textarea id="message" rows="4" placeholder="Máte špecifickú požiadavku k zariadeniu?" data-i18n-ph="modal_msg_ph"></textarea>
++            </div>
++            <button type="submit" class="btn btn-primary w-full" data-i18n="modal_submit">Odoslať dopyt</button>
++          </form>
++          <div id="formSuccess" class="form-success hidden" data-i18n="modal_success">
++             Ďakujeme! Váš dopyt bol úspešne odoslaný. Čoskoro vás budeme kontaktovať.
++          </div>
++        </div>
++      </div>
++    </div>
++
++    <script type="module" src="/main.js"></script>
++  </body>
++</html>
