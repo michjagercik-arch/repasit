@@ -13,6 +13,7 @@ const translations = {
         hero_subtitle: "Spoľahlivosť bez kompromisov. Starostlivo vybrané a testované zariadenia pre vašu firmu aj domov.",
         hero_btn_1: "Pozrieť ponuku",
         hero_btn_2: "Zistiť viac",
+        hero_trust: "Overený predajca na:",
         
         feat_title: "Prečo repasovaná technika?",
         feat_1_title: "100% Garancia",
@@ -82,6 +83,7 @@ const translations = {
         hero_subtitle: "Spolehlivost bez kompromisů. Pečlivě vybraná a testovaná zařízení pro vaši firmu i domov.",
         hero_btn_1: "Prohlédnout nabídku",
         hero_btn_2: "Zjistit více",
+        hero_trust: "Ověřený prodejce na:",
         
         feat_title: "Proč repasovaná technika?",
         feat_1_title: "100% Garance",
@@ -151,6 +153,7 @@ const translations = {
         hero_subtitle: "Reliability without compromises. Carefully selected and tested devices for your business and home.",
         hero_btn_1: "View Catalog",
         hero_btn_2: "Learn More",
+        hero_trust: "Verified seller on:",
         
         feat_title: "Why Refurbished IT?",
         feat_1_title: "100% Guarantee",
