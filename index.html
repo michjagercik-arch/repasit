@@ -136,6 +136,24 @@
     </section>
 
 
+    <!-- Reviews Section -->
+    <section class="section reviews-section" id="hodnotenia">
+      <div class="section-container">
+        <div class="section-header reveal-up">
+          <h2 class="section-title" data-i18n="reviews_title">Hodnotenia zákazníkov</h2>
+          <p class="section-subtitle" data-i18n="reviews_subtitle">Prečítajte si, čo o nás hovoria naši spokojní zákazníci, alebo zanechajte vlastné hodnotenie.</p>
+        </div>
+        
+        <div class="reviews-actions reveal-up">
+            <button class="btn btn-primary" id="openReviewBtn" data-i18n="reviews_add_btn">Pridať hodnotenie</button>
+        </div>
+
+        <div class="reviews-grid reveal-up" id="reviewsGrid">
+          <!-- Reviews will be injected via JS -->
+        </div>
+      </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer" id="kontakt">
       <div class="mesh-bg footer-mesh"></div>
@@ -239,6 +257,44 @@
              Ďakujeme! Váš dopyt bol úspešne odoslaný. Čoskoro vás budeme kontaktovať.
           </div>
         </div>
+      </div>
+    </div>
+
+    <!-- Review Modal -->
+    <div class="modal-overlay" id="reviewModal">
+      <div class="modal">
+        <button class="modal-close" id="closeReviewModal">&times;</button>
+        <div class="modal-content">
+          <h2 class="modal-title" data-i18n="review_modal_title">Pridať hodnotenie</h2>
+          <p class="modal-subtitle" data-i18n="review_modal_subtitle">Vaša spätná väzba je pre nás dôležitá.</p>
+          
+          <form class="contact-form" id="reviewForm">
+            <div class="form-group">
+              <label for="reviewName" data-i18n="review_name">Meno</label>
+              <input type="text" id="reviewName" name="name" required placeholder="Vaše meno" data-i18n-ph="review_name_ph">
+            </div>
+            <div class="form-group">
+              <label data-i18n="review_rating">Hodnotenie</label>
+              <div class="star-rating">
+                <input type="radio" id="star5" name="rating" value="5" required/><label for="star5" title="5 stars">★</label>
+                <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 stars">★</label>
+                <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 stars">★</label>
+                <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 stars">★</label>
+                <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star">★</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="reviewText" data-i18n="review_text">Vaša skúsenosť</label>
+              <textarea id="reviewText" name="text" rows="4" required placeholder="Ako ste boli spokojní?" data-i18n-ph="review_text_ph"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary w-full" data-i18n="review_submit">Odoslať hodnotenie</button>
+          </form>
+          <div id="reviewSuccess" class="form-success hidden" data-i18n="review_success">
+             Ďakujeme za vaše hodnotenie!
+          </div>
+        </div>
+      </div>
+    </div>
 
 
     <script type="module" src="/main.js"></script>

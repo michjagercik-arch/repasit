@@ -68,7 +68,20 @@ const translations = {
         product_price_req: "Na vyžiadanie",
         product_on_way: "Na ceste",
         product_just_arrived: "Práve dorazilo",
-        product_sold_out: "Momentálne vypredané"
+        product_sold_out: "Momentálne vypredané",
+        
+        reviews_title: "Hodnotenia zákazníkov",
+        reviews_subtitle: "Prečítajte si, čo o nás hovoria naši spokojní zákazníci, alebo zanechajte vlastné hodnotenie.",
+        reviews_add_btn: "Pridať hodnotenie",
+        review_modal_title: "Pridať hodnotenie",
+        review_modal_subtitle: "Vaša spätná väzba je pre nás dôležitá.",
+        review_name: "Meno",
+        review_name_ph: "Vaše meno",
+        review_rating: "Hodnotenie",
+        review_text: "Vaša skúsenosť",
+        review_text_ph: "Ako ste boli spokojní?",
+        review_submit: "Odoslať hodnotenie",
+        review_success: "Ďakujeme za vaše hodnotenie!"
     },
     cz: {
         head_title: "REPASit | Prémiová technika",
@@ -138,7 +151,20 @@ const translations = {
         product_price_req: "Na vyžádání",
         product_on_way: "Na cestě",
         product_just_arrived: "Právě dorazilo",
-        product_sold_out: "Momentálně vyprodáno"
+        product_sold_out: "Momentálně vyprodáno",
+        
+        reviews_title: "Hodnocení zákazníků",
+        reviews_subtitle: "Přečtěte si, co o nás říkají naši spokojení zákazníci, nebo zanechte vlastní hodnocení.",
+        reviews_add_btn: "Přidat hodnocení",
+        review_modal_title: "Přidat hodnocení",
+        review_modal_subtitle: "Vaše zpětná vazba je pro nás důležitá.",
+        review_name: "Jméno",
+        review_name_ph: "Vaše jméno",
+        review_rating: "Hodnocení",
+        review_text: "Vaše zkušenost",
+        review_text_ph: "Jak jste byli spokojeni?",
+        review_submit: "Odeslat hodnocení",
+        review_success: "Děkujeme za vaše hodnocení!"
     },
     en: {
         head_title: "REPASit | Premium Equipment",
@@ -208,7 +234,20 @@ const translations = {
         product_price_req: "On request",
         product_on_way: "On the way",
         product_just_arrived: "Just arrived",
-        product_sold_out: "Currently sold out"
+        product_sold_out: "Currently sold out",
+        
+        reviews_title: "Customer Reviews",
+        reviews_subtitle: "Read what our satisfied customers say about us, or leave your own review.",
+        reviews_add_btn: "Add a review",
+        review_modal_title: "Add a Review",
+        review_modal_subtitle: "Your feedback is important to us.",
+        review_name: "Name",
+        review_name_ph: "Your name",
+        review_rating: "Rating",
+        review_text: "Your experience",
+        review_text_ph: "How satisfied were you?",
+        review_submit: "Submit Review",
+        review_success: "Thank you for your review!"
     }
 };
 
@@ -789,4 +828,125 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // --- Reviews Logic ---
+    const reviewsGrid = document.getElementById('reviewsGrid');
+    const reviewModal = document.getElementById('reviewModal');
+    const closeReviewModalBtn = document.getElementById('closeReviewModal');
+    const openReviewBtn = document.getElementById('openReviewBtn');
+    const reviewForm = document.getElementById('reviewForm');
+    const reviewSuccess = document.getElementById('reviewSuccess');
+
+    // Default reviews
+    const defaultReviews = [
+        {
+            name: "Jozef",
+            date: "12. 5. 2026",
+            rating: 5,
+            text: "Výborná komunikácia a poradenstvo. Notebook prišiel rýchlo a vo vynikajúcom stave, vyzerá ako nový. Určite odporúčam!"
+        },
+        {
+            name: "Martin K.",
+            date: "3. 4. 2026",
+            rating: 5,
+            text: "Kupoval som už druhé zariadenie do firmy. Profesionálny prístup, skvelé ceny a najmä 100% spoľahlivosť techniky."
+        },
+        {
+            name: "Lenka",
+            date: "28. 3. 2026",
+            rating: 4,
+            text: "Skvelý výber repasovanej techniky. Menšie zdržanie pri dodaní kvôli kuriérovi, inak všetko super, notebook šlape ako hodinky."
+        }
+    ];
+
+    function loadReviews() {
+        let saved = localStorage.getItem('repasit-reviews');
+        if (!saved) {
+            saved = JSON.stringify(defaultReviews);
+            localStorage.setItem('repasit-reviews', saved);
+        }
+        return JSON.parse(saved);
+    }
+
+    function saveReview(review) {
+        const reviews = loadReviews();
+        reviews.unshift(review);
+        localStorage.setItem('repasit-reviews', JSON.stringify(reviews));
+        renderReviews();
+    }
+
+    function renderReviews() {
+        if(!reviewsGrid) return;
+        const reviews = loadReviews();
+        reviewsGrid.innerHTML = '';
+        reviews.forEach(r => {
+            const stars = '★'.repeat(r.rating) + '☆'.repeat(5 - r.rating);
+            const card = document.createElement('div');
+            card.className = 'review-card reveal-up visible';
+            card.innerHTML = `
+                <div class="review-header">
+                    <span class="review-author">${r.name}</span>
+                    <span class="review-date">${r.date}</span>
+                </div>
+                <div class="review-stars">${stars}</div>
+                <div class="review-text">${r.text}</div>
+            `;
+            reviewsGrid.appendChild(card);
+        });
+    }
+
+    // Initialize reviews
+    renderReviews();
+
+    if(openReviewBtn) {
+        openReviewBtn.addEventListener('click', () => {
+            reviewForm.reset();
+            reviewForm.style.display = 'block';
+            reviewSuccess.classList.add('hidden');
+            reviewModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    }
+
+    function closeReviewModal() {
+        reviewModal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    if(closeReviewModalBtn) {
+        closeReviewModalBtn.addEventListener('click', closeReviewModal);
+    }
+    
+    if(reviewModal) {
+        reviewModal.addEventListener('click', (e) => {
+            if (e.target === reviewModal) closeReviewModal();
+        });
+    }
+
+    if(reviewForm) {
+        reviewForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(reviewForm);
+            const name = formData.get('name');
+            const rating = parseInt(formData.get('rating'));
+            const text = formData.get('text');
+            
+            const today = new Date();
+            const dateStr = today.getDate() + '. ' + (today.getMonth()+1) + '. ' + today.getFullYear();
+            
+            saveReview({
+                name,
+                rating,
+                text,
+                date: dateStr
+            });
+            
+            reviewForm.style.display = 'none';
+            reviewSuccess.classList.remove('hidden');
+            setTimeout(() => {
+                closeReviewModal();
+            }, 3000);
+        });
+    }
+
 });
+
