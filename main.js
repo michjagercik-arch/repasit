@@ -858,28 +858,54 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
-    function loadReviews() {
-        let saved = localStorage.getItem('repasit-reviews');
-        if (!saved) {
-            saved = JSON.stringify(defaultReviews);
-            localStorage.setItem('repasit-reviews', saved);
+    const API_URL = 'https://script.google.com/macros/s/AKfycbwpWPcO5rDCNAR37nuftSFDTdowAMFff0ULhbUvm_8107L_agTUj1rmcOpU2y_wKnX-/exec';
+
+    async function loadReviews() {
+        try {
+            const response = await fetch(API_URL);
+            const data = await response.json();
+            if (data && data.length > 0) {
+                return data;
+            }
+        } catch (error) {
+            console.error('Chyba pri načítaní hodnotení:', error);
         }
-        return JSON.parse(saved);
+        return defaultReviews;
     }
 
-    function saveReview(review) {
-        const reviews = loadReviews();
-        reviews.unshift(review);
-        localStorage.setItem('repasit-reviews', JSON.stringify(reviews));
-        renderReviews();
+    async function saveReview(review) {
+        try {
+            await fetch(API_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'text/plain;charset=utf-8',
+                },
+                body: JSON.stringify(review)
+            });
+            // Znovu vyrenderujeme so stiahnutými aktuálnymi dátami
+            renderReviews();
+            return true;
+        } catch(error) {
+            console.error('Chyba pri ukladaní hodnotenia:', error);
+            return false;
+        }
     }
 
-    function renderReviews() {
+    async function renderReviews() {
         if(!reviewsGrid) return;
-        const reviews = loadReviews();
+        
+        // Loading kostry
+        reviewsGrid.innerHTML = `
+            <div class="review-card skeleton-card"><div class="skeleton-text short"></div><div class="skeleton-text medium"></div><div class="skeleton-text full"></div><div class="skeleton-text full"></div></div>
+            <div class="review-card skeleton-card"><div class="skeleton-text short"></div><div class="skeleton-text medium"></div><div class="skeleton-text full"></div><div class="skeleton-text full"></div></div>
+            <div class="review-card skeleton-card"><div class="skeleton-text short"></div><div class="skeleton-text medium"></div><div class="skeleton-text full"></div><div class="skeleton-text full"></div></div>
+        `;
+
+        const reviews = await loadReviews();
         reviewsGrid.innerHTML = '';
         reviews.forEach(r => {
-            const stars = '★'.repeat(r.rating) + '☆'.repeat(5 - r.rating);
+            const ratingNum = parseInt(r.rating) || 5;
+            const stars = '★'.repeat(ratingNum) + '☆'.repeat(5 - ratingNum);
             const card = document.createElement('div');
             card.className = 'review-card reveal-up visible';
             card.innerHTML = `
@@ -923,8 +949,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if(reviewForm) {
-        reviewForm.addEventListener('submit', (e) => {
+        reviewForm.addEventListener('submit', async (e) => {
             e.preventDefault();
+            
+            const submitBtn = reviewForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerText;
+            submitBtn.innerText = 'Odosielam...';
+            submitBtn.disabled = true;
+
             const formData = new FormData(reviewForm);
             const name = formData.get('name');
             const rating = parseInt(formData.get('rating'));
@@ -933,18 +965,25 @@ document.addEventListener('DOMContentLoaded', () => {
             const today = new Date();
             const dateStr = today.getDate() + '. ' + (today.getMonth()+1) + '. ' + today.getFullYear();
             
-            saveReview({
+            const success = await saveReview({
                 name,
                 rating,
                 text,
                 date: dateStr
             });
             
-            reviewForm.style.display = 'none';
-            reviewSuccess.classList.remove('hidden');
-            setTimeout(() => {
-                closeReviewModal();
-            }, 3000);
+            submitBtn.innerText = originalText;
+            submitBtn.disabled = false;
+
+            if (success) {
+                reviewForm.style.display = 'none';
+                reviewSuccess.classList.remove('hidden');
+                setTimeout(() => {
+                    closeReviewModal();
+                }, 3000);
+            } else {
+                alert("Nastala chyba pri odosielaní. Skúste to prosím neskôr.");
+            }
         });
     }
 
