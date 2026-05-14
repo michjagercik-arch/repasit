@@ -795,7 +795,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, observerOptions);
 
     // Initial hook for static HTML entries (pre-render)
-    document.querySelectorAll('.feature-card, .section-header').forEach(el => {
+    document.querySelectorAll('.feature-card, .section-header, .reviews-actions, .reviews-grid').forEach(el => {
         el.classList.add('reveal-up');
         window.scrollObserver.observe(el);
     });
