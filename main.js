@@ -887,12 +887,21 @@ document.addEventListener('DOMContentLoaded', () => {
         reviews.forEach(r => {
             const ratingNum = parseInt(r.rating) || 5;
             const stars = '★'.repeat(ratingNum) + '☆'.repeat(5 - ratingNum);
+            
+            let displayDate = r.date;
+            if (displayDate && displayDate.includes && displayDate.includes('T')) {
+                const d = new Date(displayDate);
+                if (!isNaN(d)) {
+                    displayDate = d.getDate() + '. ' + (d.getMonth() + 1) + '. ' + d.getFullYear();
+                }
+            }
+
             const card = document.createElement('div');
             card.className = 'review-card reveal-up visible';
             card.innerHTML = `
                 <div class="review-header">
                     <span class="review-author">${r.name}</span>
-                    <span class="review-date">${r.date}</span>
+                    <span class="review-date">${displayDate}</span>
                 </div>
                 <div class="review-stars">${stars}</div>
                 <div class="review-text">${r.text}</div>
