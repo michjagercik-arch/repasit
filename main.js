@@ -862,9 +862,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function loadReviews() {
         try {
-            const response = await fetch(API_URL);
+            const response = await fetch(API_URL, { cache: 'no-store' });
             const data = await response.json();
-            if (data && data.length > 0) {
+            if (Array.isArray(data)) {
                 return data;
             }
         } catch (error) {
