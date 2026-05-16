@@ -836,28 +836,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const reviewForm = document.getElementById('reviewForm');
     const reviewSuccess = document.getElementById('reviewSuccess');
 
-    // Default reviews
-    const defaultReviews = [
-        {
-            name: "Jozef",
-            date: "12. 5. 2026",
-            rating: 5,
-            text: "Výborná komunikácia a poradenstvo. Notebook prišiel rýchlo a vo vynikajúcom stave, vyzerá ako nový. Určite odporúčam!"
-        },
-        {
-            name: "Martin K.",
-            date: "3. 4. 2026",
-            rating: 5,
-            text: "Kupoval som už druhé zariadenie do firmy. Profesionálny prístup, skvelé ceny a najmä 100% spoľahlivosť techniky."
-        },
-        {
-            name: "Lenka",
-            date: "28. 3. 2026",
-            rating: 4,
-            text: "Skvelý výber repasovanej techniky. Menšie zdržanie pri dodaní kvôli kuriérovi, inak všetko super, notebook šlape ako hodinky."
-        }
-    ];
-
     const API_URL = 'https://script.google.com/macros/s/AKfycbwpWPcO5rDCNAR37nuftSFDTdowAMFff0ULhbUvm_8107L_agTUj1rmcOpU2y_wKnX-/exec';
 
     async function loadReviews() {
@@ -870,19 +848,22 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (error) {
             console.error('Chyba pri načítaní hodnotení:', error);
         }
-        return defaultReviews;
+        return [];
     }
 
     async function saveReview(review) {
         try {
             await fetch(API_URL, {
                 method: 'POST',
+                mode: 'no-cors',
                 headers: {
                     'Content-Type': 'text/plain;charset=utf-8',
                 },
                 body: JSON.stringify(review)
             });
-            // Znovu vyrenderujeme so stiahnutými aktuálnymi dátami
+            // Google Apps Script s mode: 'no-cors' nevráti čitateľnú odpoveď, ale požiadavka prejde.
+            // Počkáme sekundu, aby mal Google čas zapísať dáta do tabuľky predtým, než ju znovu načítame.
+            await new Promise(resolve => setTimeout(resolve, 1000));
             renderReviews();
             return true;
         } catch(error) {
