@@ -1193,6 +1193,50 @@ mark.highlight {
   margin-bottom: 40px;
 }
 
+.carousel-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: all var(--transition-fast);
+}
+
+.carousel-btn:hover {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  box-shadow: 0 6px 16px rgba(58, 130, 246, 0.4);
+}
+
+.prev-btn {
+  left: -24px;
+}
+
+.next-btn {
+  right: -24px;
+}
+
+@media (max-width: 768px) {
+  .prev-btn { left: -10px; }
+  .next-btn { right: -10px; }
+}
+
 .reviews-grid {
   display: flex;
   overflow-x: auto;

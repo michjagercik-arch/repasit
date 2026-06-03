@@ -977,5 +977,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Carousel Navigation
+    const prevReviewBtn = document.getElementById('prevReviewBtn');
+    const nextReviewBtn = document.getElementById('nextReviewBtn');
+
+    if (prevReviewBtn && nextReviewBtn && reviewsGrid) {
+        const scrollAmount = 344; // 320px width + 24px gap
+
+        prevReviewBtn.addEventListener('click', () => {
+            reviewsGrid.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        });
+
+        nextReviewBtn.addEventListener('click', () => {
+            reviewsGrid.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        });
+    }
+
 });
 

@@ -148,8 +148,18 @@
             <button class="btn btn-primary" id="openReviewBtn" data-i18n="reviews_add_btn">Pridať hodnotenie</button>
         </div>
 
-        <div class="reviews-grid reveal-up" id="reviewsGrid">
-          <!-- Reviews will be injected via JS -->
+        <div class="carousel-wrapper reveal-up" style="position: relative;">
+          <button class="carousel-btn prev-btn" id="prevReviewBtn" aria-label="Predošlé">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
+          
+          <div class="reviews-grid" id="reviewsGrid">
+            <!-- Reviews will be injected via JS -->
+          </div>
+
+          <button class="carousel-btn next-btn" id="nextReviewBtn" aria-label="Ďalšie">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
         </div>
       </div>
     </section>
